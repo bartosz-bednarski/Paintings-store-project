@@ -1,0 +1,12 @@
+.menu-container {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+}
+ul {
+  list-style-type: none;
+}
+li {
+  display: inline;
+  padding: 0 1em;
+}
