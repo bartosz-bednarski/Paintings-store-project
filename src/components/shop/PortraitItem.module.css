@@ -1,0 +1,12 @@
+.portraitItem {
+  display: flex;
+  flex-direction: column;
+  width: 30vh;
+  height: fit-content;
+  padding: 2vh 5vh;
+  text-align: center;
+}
+
+.portraitItemItem img {
+  width: 30vh;
+}

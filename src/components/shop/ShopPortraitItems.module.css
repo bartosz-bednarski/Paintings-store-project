@@ -1,0 +1,12 @@
+.ShopPortraitItems-container {
+  display: flex;
+  flex-direction: row;
+  width: auto;
+  padding: 5vh 10vh;
+  column-gap: 5vh;
+  row-gap: 5vh;
+  flex-wrap: wrap;
+  min-height: 80vh;
+  height: auto;
+  background: rgb(204, 55, 55);
+}
