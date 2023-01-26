@@ -2,4 +2,20 @@
   display: flex;
   flex-direction: column;
   padding: 5vh;
+  font-size: 16px;
+  font-weight: 500;
+  width: auto;
+}
+.registerForm-container label {
+  padding: 1vh 0;
+}
+
+.registerForm-container input {
+  height: 3vh;
+  border: 1px solid grey;
+}
+.registerForm-container button {
+  margin: 3vh 0 1vh 0;
+  padding: 1vh;
+  width: auto;
 }

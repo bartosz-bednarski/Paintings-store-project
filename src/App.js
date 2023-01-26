@@ -4,20 +4,33 @@ import Header from "./components/header/Header";
 import Slider from "./components/slider/Slider";
 import Shop from "./components/shop/Shop";
 import RegisterForm from "./components/header/RegisterForm";
+import LoginForm from "./components/header/LoginForm";
 function App() {
-  const [modalIsShown, setModalIsShown] = useState(false);
-
-  const showModalHandler = () => {
-    setModalIsShown(true);
+  const [loginFormIsShown, setLoginFormIsShown] = useState(false);
+  const [registerFormIsShown, setRegisterFormIsShown] = useState(false);
+  //Display login/register form
+  const showLoginForm = () => {
+    setLoginFormIsShown(true);
   };
 
-  const hideModalHandler = () => {
-    setModalIsShown(false);
+  const hideLoginForm = () => {
+    setLoginFormIsShown(false);
   };
+  const showRegisterForm = () => {
+    setRegisterFormIsShown(true);
+  };
+  const hideRegisterForm = () => {
+    setRegisterFormIsShown(false);
+  };
+  //Display login/register form
   return (
     <Fragment>
-      {modalIsShown && <RegisterForm onClose={hideModalHandler} />}
-      <Header onShowModalHandler={showModalHandler}></Header>
+      {loginFormIsShown && <LoginForm onClose={hideLoginForm} />}
+      {registerFormIsShown && <RegisterForm onClose={hideRegisterForm} />}
+      <Header
+        onShowloginForm={showLoginForm}
+        onShowRegisterForm={showRegisterForm}
+      ></Header>
       <Slider />
       <Shop />
     </Fragment>

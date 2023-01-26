@@ -6,7 +6,10 @@ const Header = (props) => {
   return (
     <div className={classes["header-container"]}>
       <Logo />
-      <MenuItems onShowModalHandler={props.onShowModalHandler} />
+      <MenuItems
+        onShowloginForm={props.onShowloginForm}
+        onShowRegisterForm={props.onShowRegisterForm}
+      />
     </div>
   );
 };
