@@ -1,4 +1,15 @@
-h1 {
+.logo {
   padding: 0;
   margin: 0;
+  background: #cfb99b;
+  background: linear-gradient(
+    to right,
+    #cfb99b 0%,
+    #ffab7a 25%,
+    #ffe14a 50%,
+    #ffa51f 75%,
+    #cf1512 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

@@ -1,7 +1,7 @@
 import classes from "./RegisterForm.module.css";
 import Modal from "../UI/Modal";
-import { useEffect, useReducer, useState } from "react";
-
+import { useContext, useEffect, useReducer, useState } from "react";
+import RegisterContext from "../../store/register-context";
 const emailReducer = (state, action) => {
   if (action.type === "USER_INPUT") {
     return {
@@ -71,6 +71,7 @@ const RegisterForm = (props) => {
   const { value: passwordConfirmValue } = passwordConfirmState;
   const { isValid: passwordConfirmIsValid } = passwordConfirmState;
   const { isValid: emailIsValid } = emailState;
+  const { value: emailValue } = emailState;
 
   useEffect(() => {
     setFormIsValid(
@@ -85,13 +86,20 @@ const RegisterForm = (props) => {
     passwordIsValid,
     passwordConfirmIsValid,
     emailIsValid,
+    emailValue,
   ]);
-
+  const ctx = useContext(RegisterContext);
   const submitHandler = (event) => {
     event.preventDefault();
 
+    const userData = {
+      email: emailValue,
+      password: passwordValue,
+    };
     if (formIsValid === true) {
       setWarningMessage({ isValid: false });
+      ctx.registrationData(userData);
+      props.onClose();
       console.log("correct");
     } else if (passwordValue !== passwordConfirmValue) {
       setWarningMessage({
@@ -107,6 +115,7 @@ const RegisterForm = (props) => {
       });
     }
   };
+
   return (
     <Modal onClose={props.onClose}>
       <form onSubmit={submitHandler}>
