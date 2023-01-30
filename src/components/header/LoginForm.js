@@ -18,41 +18,54 @@ const LoginForm = (props) => {
   const passwordChangeHandler = (event) => {
     setPasswordValue(event.target.value);
   };
-
+  const [warningMessage, setWarningMessage] = useState({
+    type: "WARNING_MESSAGE",
+    value: " ",
+    isValid: false,
+  });
   const emailIsValidHanlder = (emailValue) => {
     for (const key in usersData) {
-      if (usersData[key].email === emailValue) {
-        console.log("correct");
-      } else {
-        console.log("wrong");
-      }
       if (
         usersData[key].email === emailValue &&
         usersData[key].password === passwordValue
       ) {
         setLoginIsValid({ email: emailValue, isValid: true });
+        ctx.userIsLoggedInHandler(emailValue, true);
+        props.onClose();
         console.log("correct password and email");
-      } else {
-        console.log("incorrect password or email");
+      } else if (usersData[key].email !== emailValue) {
+        setWarningMessage({
+          type: "WARNING_MESSAGE_EMAIL",
+          value: "Wrong e-mail.",
+          isValid: true,
+        });
+      } else if (usersData[key].password !== passwordValue) {
+        setWarningMessage({
+          type: "WARNING_MESSAGE_PASSWORD",
+          value: "Wrong password.",
+          isValid: true,
+        });
       }
     }
   };
   const submitHandler = (event) => {
     event.preventDefault();
-    console.log(emailValue);
-    console.log(passwordValue);
-    console.log(ctx.registeredUsersData.response);
     emailIsValidHanlder(emailValue);
-    console.log(loginIsValid);
   };
   return (
     <Modal onClose={props.onClose}>
       <form onSubmit={submitHandler}>
         <div className={classes["registerForm-container"]}>
           <label htmlFor="e-mail">E-mail</label>
-          <input type="text" id="e-mail" onChange={emailChangeHandler} />
+          <input type="email" id="e-mail" onChange={emailChangeHandler} />
+          {warningMessage.type === "WARNING_MESSAGE_EMAIL" && (
+            <p>{warningMessage.value}</p>
+          )}
           <label htmlFor="password">Password</label>
           <input type="text" id="password" onChange={passwordChangeHandler} />
+          {warningMessage.type === "WARNING_MESSAGE_PASSWORD" && (
+            <p>{warningMessage.value}</p>
+          )}
           <button>Login</button>
         </div>
       </form>

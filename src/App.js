@@ -12,9 +12,11 @@ import Shop from "./components/shop/Shop";
 import RegisterForm from "./components/header/RegisterForm";
 import LoginForm from "./components/header/LoginForm";
 import RegisterContext from "./store/register-context";
+import UserProfile from "./components/header/UserProfile";
 function App() {
   const [loginFormIsShown, setLoginFormIsShown] = useState(false);
   const [registerFormIsShown, setRegisterFormIsShown] = useState(false);
+  const [userProfileIsShown, setUserProfileIsShown] = useState(false);
   //Display login/register form
   const showLoginForm = () => {
     setLoginFormIsShown(true);
@@ -30,12 +32,27 @@ function App() {
     setRegisterFormIsShown(false);
   };
 
+  const showUserProfile = () => {
+    setUserProfileIsShown(true);
+  };
+  const hideUserProfile = () => {
+    setUserProfileIsShown(false);
+  };
+
   const consoleLogHandler = () => {
-    console.log(registeredUsers);
+    console.log(isLoggedIn);
+    console.log(userProfileIsShown);
   };
 
   const registeredUsersReducer = (state, action) => {
     return { response: action.response };
+  };
+  const [isLoggedIn, setIsLoggedIn] = useState({
+    email: " ",
+    isLoggedIn: false,
+  });
+  const isLoggedInHandler = (emailVal, isLoggedInVal) => {
+    setIsLoggedIn({ email: emailVal, isLoggedIn: isLoggedInVal });
   };
   const [registeredUsers, dispatchRegisteredUsers] = useReducer(
     registeredUsersReducer,
@@ -72,6 +89,7 @@ function App() {
     );
     const data = await response.json();
     console.log(data);
+    fetchUsersHandler();
   }
   //Display login/register form
   return (
@@ -80,13 +98,17 @@ function App() {
         value={{
           registrationData: addRegisteredUserHandler,
           registeredUsersData: registeredUsers,
+          userIsLoggedInHandler: isLoggedInHandler,
+          userIsLoggedIn: isLoggedIn,
         }}
       >
         {loginFormIsShown && <LoginForm onClose={hideLoginForm} />}
         {registerFormIsShown && <RegisterForm onClose={hideRegisterForm} />}
+        {userProfileIsShown && <UserProfile onClose={hideUserProfile} />}
         <Header
           onShowloginForm={showLoginForm}
           onShowRegisterForm={showRegisterForm}
+          onShowUserProfile={showUserProfile}
         ></Header>
       </RegisterContext.Provider>
       <Slider />

@@ -73,12 +73,24 @@ const RegisterForm = (props) => {
   const { isValid: emailIsValid } = emailState;
   const { value: emailValue } = emailState;
 
+  const [emailIsUnique, setEmailIsUnique] = useState(false);
+  const ctx = useContext(RegisterContext);
+  const usersData = ctx.registeredUsersData.response;
+
   useEffect(() => {
+    for (const key in usersData) {
+      if (usersData[key].email !== emailValue) {
+        setEmailIsUnique(true);
+      } else {
+        setEmailIsUnique(false);
+      }
+    }
     setFormIsValid(
       passwordValue === passwordConfirmValue &&
         passwordIsValid &&
         passwordConfirmIsValid &&
-        emailIsValid
+        emailIsValid &&
+        emailIsUnique
     );
   }, [
     passwordValue,
@@ -88,7 +100,7 @@ const RegisterForm = (props) => {
     emailIsValid,
     emailValue,
   ]);
-  const ctx = useContext(RegisterContext);
+
   const submitHandler = (event) => {
     event.preventDefault();
 
@@ -100,16 +112,21 @@ const RegisterForm = (props) => {
       setWarningMessage({ isValid: false });
       ctx.registrationData(userData);
       props.onClose();
-      console.log("correct");
+    } else if (emailIsUnique === false) {
+      setWarningMessage({
+        type: "WARNING_MESSAGE_DUPLICATED_EMAIL",
+        value: "Account on this e-mail already exists.",
+        isValid: true,
+      });
     } else if (passwordValue !== passwordConfirmValue) {
       setWarningMessage({
-        type: "WARNING_MESSAGE",
+        type: "WARNING_MESSAGE_DIFFERENT PASSWORDS",
         value: "Your passwords are different.",
         isValid: true,
       });
     } else if (passwordIsValid || passwordConfirmIsValid === false) {
       setWarningMessage({
-        type: "WARNING_MESSAGE",
+        type: "WARNING_MESSAGE_TOO_SHORT_PASSWORD",
         value: "One of your passwords is too short.",
         isValid: true,
       });
@@ -122,16 +139,26 @@ const RegisterForm = (props) => {
         <div className={classes["registerForm-container"]}>
           <label htmlFor="email">E-mail</label>
           <input type="email" id="email" onChange={emailChangeHandler} />
+
           <label htmlFor="password">Password</label>
           <input type="text" id="password" onChange={passwordChangeHandler} />
+
           <label htmlFor="passwordConfirm">Confirm password</label>
           <input
             type="text"
             id="passwordConfirm"
             onChange={passwordConfirmChangeHandler}
           />
+          {warningMessage.type === "WARNING_MESSAGE_DIFFERENT PASSWORDS" && (
+            <p>{warningMessage.value}</p>
+          )}
+          {warningMessage.type === "WARNING_MESSAGE_TOO_SHORT_PASSWORD" && (
+            <p>{warningMessage.value}</p>
+          )}
+          {warningMessage.type === "WARNING_MESSAGE_DUPLICATED_EMAIL" && (
+            <p>{warningMessage.value}</p>
+          )}
           <button>Register</button>
-          {warningMessage.isValid && <h2>{warningMessage.value}</h2>}
         </div>
       </form>
     </Modal>

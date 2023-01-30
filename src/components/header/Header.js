@@ -9,6 +9,7 @@ const Header = (props) => {
       <MenuItems
         onShowloginForm={props.onShowloginForm}
         onShowRegisterForm={props.onShowRegisterForm}
+        onShowUserProfile={props.onShowUserProfile}
       />
     </div>
   );

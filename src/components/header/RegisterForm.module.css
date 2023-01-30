@@ -19,3 +19,7 @@
   padding: 1vh;
   width: auto;
 }
+.registerForm-container p {
+  color: red;
+  font-size: 13px;
+}

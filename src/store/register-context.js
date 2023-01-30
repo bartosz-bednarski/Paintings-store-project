@@ -2,7 +2,9 @@ import React from "react";
 
 const RegisterContext = React.createContext({
   registrationData: () => {},
-  registeredUsers: {},
+  registeredUsersData: {},
+  userIsLoggedInHandler: {},
+  userIsLoggedIn: {},
 });
 
 export default RegisterContext;
