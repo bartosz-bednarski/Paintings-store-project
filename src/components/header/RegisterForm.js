@@ -76,13 +76,15 @@ const RegisterForm = (props) => {
   const [emailIsUnique, setEmailIsUnique] = useState(false);
   const ctx = useContext(RegisterContext);
   const usersData = ctx.registeredUsersData.response;
-
+  //after passing same e-mail, then backspace and writing again the same email it accepts the values. This has to be fixed !!!
   useEffect(() => {
     for (const key in usersData) {
-      if (usersData[key].email !== emailValue) {
-        setEmailIsUnique(true);
-      } else {
+      if (usersData[key].email === emailValue) {
+        console.log("emailisNOTUnique");
+        console.log(usersData);
         setEmailIsUnique(false);
+      } else {
+        setEmailIsUnique(true);
       }
     }
     setFormIsValid(
@@ -90,7 +92,7 @@ const RegisterForm = (props) => {
         passwordIsValid &&
         passwordConfirmIsValid &&
         emailIsValid &&
-        emailIsUnique
+        emailIsUnique === true
     );
   }, [
     passwordValue,
@@ -99,6 +101,7 @@ const RegisterForm = (props) => {
     passwordConfirmIsValid,
     emailIsValid,
     emailValue,
+    setEmailIsUnique,
   ]);
 
   const submitHandler = (event) => {

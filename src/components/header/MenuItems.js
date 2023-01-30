@@ -2,6 +2,7 @@ import classes from "./MenuItems.module.css";
 import ListButton from "../UI/ListButton";
 import { useContext } from "react";
 import RegisterContext from "../../store/register-context";
+import BasketButton from "./BasketButton";
 const MenuItems = (props) => {
   const ctx = useContext(RegisterContext);
   const isLoggedIn = ctx.userIsLoggedIn;
@@ -10,16 +11,24 @@ const MenuItems = (props) => {
       <ul>
         {isLoggedIn.isLoggedIn === false && (
           <>
-            <ListButton onClick={props.onShowloginForm}>Login</ListButton>
-            <ListButton onClick={props.onShowRegisterForm}>Register</ListButton>
+            <li>
+              <button onClick={props.onShowloginForm}>Login</button>
+            </li>
+            <li>
+              <button onClick={props.onShowRegisterForm}>Register</button>
+            </li>
           </>
         )}
         {isLoggedIn.isLoggedIn && (
-          <ListButton onClick={props.onShowUserProfile}>
-            {isLoggedIn.email}
-          </ListButton>
+          <li>
+            <button onClick={props.onShowUserProfile}>
+              {isLoggedIn.email}
+            </button>
+          </li>
         )}
-        <ListButton>Menu</ListButton>
+        <li>
+          <BasketButton />
+        </li>
       </ul>
     </div>
   );

@@ -10,3 +10,13 @@ li {
   display: inline;
   padding: 0 1em;
 }
+button {
+  display: inline;
+  padding: 0.6em 1em;
+  margin: 0 1em;
+  font-weight: bold;
+  border: 0;
+  font-size: 16px;
+  background-color: transparent;
+  cursor: pointer;
+}
