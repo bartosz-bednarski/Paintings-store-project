@@ -1,21 +1,20 @@
-.button {
+.basket-button {
   display: inline-block;
   cursor: pointer;
   font: inherit;
   border: none;
-  background-color: #4d1601;
   color: white;
-  height: fit-content;
-  padding: 0.3rem 3rem;
+  height: auto;
+  padding-top: 1em;
   border-radius: 25px;
   font-weight: bold;
 }
 .button:hover,
 .button:active {
-  background-color: #2c0d00;
+  background-color: wheat;
 }
 .icon {
-  width: auto;
+  width: 2.5rem;
   height: auto;
   margin-right: 0.5rem;
 }
@@ -23,7 +22,6 @@
   background-color: #b94517;
   padding: 0.25rem 1rem;
   border-radius: 25px;
-  margin-left: 1rem;
   font-weight: bold;
 }
 .button:hover .badge,

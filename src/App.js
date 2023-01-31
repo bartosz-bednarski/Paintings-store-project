@@ -13,6 +13,7 @@ import RegisterForm from "./components/header/RegisterForm";
 import LoginForm from "./components/header/LoginForm";
 import RegisterContext from "./store/register-context";
 import UserProfile from "./components/header/UserProfile";
+import Admin from "./components/admin/Admin";
 function App() {
   const [loginFormIsShown, setLoginFormIsShown] = useState(false);
   const [registerFormIsShown, setRegisterFormIsShown] = useState(false);
@@ -111,6 +112,7 @@ function App() {
           onShowUserProfile={showUserProfile}
         ></Header>
       </RegisterContext.Provider>
+      {isLoggedIn.email === "admin1234@gmail.com" && <Admin />}
       <Slider />
       <button onClick={consoleLogHandler}>Check console log</button>
       <Shop />

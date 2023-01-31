@@ -1,0 +1,15 @@
+.admin-container {
+  display: flex;
+
+  width: auto;
+  height: 80vh;
+  margin: 6vh 15vh;
+  border-radius: 35px;
+  align-items: center;
+  justify-content: center;
+  background-color: red;
+}
+.admin-container form {
+  display: flex;
+  flex-direction: column;
+}

@@ -80,8 +80,6 @@ const RegisterForm = (props) => {
   useEffect(() => {
     for (const key in usersData) {
       if (usersData[key].email === emailValue) {
-        console.log("emailisNOTUnique");
-        console.log(usersData);
         setEmailIsUnique(false);
       } else {
         setEmailIsUnique(true);
@@ -101,7 +99,8 @@ const RegisterForm = (props) => {
     passwordConfirmIsValid,
     emailIsValid,
     emailValue,
-    setEmailIsUnique,
+    emailIsUnique,
+    usersData,
   ]);
 
   const submitHandler = (event) => {
