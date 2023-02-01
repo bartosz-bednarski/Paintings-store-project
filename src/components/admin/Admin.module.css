@@ -1,15 +1,77 @@
 .admin-container {
   display: flex;
-
+  flex-direction: column;
   width: auto;
-  height: 80vh;
+  height: auto;
   margin: 6vh 15vh;
   border-radius: 35px;
-  align-items: center;
-  justify-content: center;
   background-color: red;
 }
 .admin-container form {
   display: flex;
+  flex-direction: row;
+  width: 80%;
+  height: auto;
+  background-color: yellow;
+  padding: 5vh;
+  margin: 5vh 10vh;
+  justify-content: center;
+  align-items: center;
+  column-gap: 20vh;
+}
+.text-data {
+  display: flex;
   flex-direction: column;
+  height: auto;
+  width: 40%;
+}
+.dropzone {
+  margin-top: 5vh;
+  display: flex;
+  height: auto;
+  min-height: 15vh;
+  width: auto;
+  background-color: rgba(0, 0, 0, 0.3);
+  justify-content: center;
+  align-items: center;
+}
+.admin-container textarea {
+  height: 10vh;
+  text-align: justify;
+  margin: 1vh 0;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.admin-container input,
+datalist {
+  margin: 1vh 0;
+  width: auto;
+  height: 3vh;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.admin-container label {
+  font-size: 18px;
+  font-weight: bold;
+}
+.paintings-list-container {
+  display: flex;
+  flex-direction: column;
+  background-color: green;
+  width: 100%;
+  height: auto;
+  justify-content: center;
+  align-items: center;
+}
+.paintings-list-container table {
+  width: 90%;
+  background-color: yellow;
+}
+.paintings-list-container th {
+  background-color: red;
+}
+.paintings-list-container td {
+  padding: 2vh;
+}
+.paintings-list-container tr {
+  padding: 1vh;
+  background-color: purple;
 }

@@ -1,0 +1,13 @@
+.landscape-box {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  height: fit-content;
+  padding: 4vh 4vh;
+  text-align: center;
+}
+
+.landscape-box img {
+  width: fit-content;
+  height: 40vh;
+}

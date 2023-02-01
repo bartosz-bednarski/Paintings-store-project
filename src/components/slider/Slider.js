@@ -49,7 +49,7 @@ const Slider = () => {
           description: dummyObject.one.description,
         });
       }
-      console.log(sliderItem);
+      // console.log(sliderItem);
       return clearInterval(interval);
     }, 10000);
   }, [sliderItem]);
