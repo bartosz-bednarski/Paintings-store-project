@@ -1,10 +1,4 @@
-import React, {
-  Fragment,
-  useCallback,
-  useEffect,
-  useReducer,
-  useState,
-} from "react";
+import React, { useCallback, useEffect, useReducer, useState } from "react";
 import "./App.css";
 import Header from "./components/header/Header";
 import Slider from "./components/slider/Slider";
@@ -14,10 +8,16 @@ import LoginForm from "./components/header/LoginForm";
 import RegisterContext from "./store/register-context";
 import UserProfile from "./components/header/UserProfile";
 import Admin from "./components/admin/Admin";
+import PaintingsContext from "./store/paintings-context";
 function App() {
   const [loginFormIsShown, setLoginFormIsShown] = useState(false);
   const [registerFormIsShown, setRegisterFormIsShown] = useState(false);
   const [userProfileIsShown, setUserProfileIsShown] = useState(false);
+  const [paintingsData, setPaintingsData] = useState([]);
+  const [isLoggedIn, setIsLoggedIn] = useState({
+    email: " ",
+    isLoggedIn: false,
+  });
   //Display login/register form
   const showLoginForm = () => {
     setLoginFormIsShown(true);
@@ -40,18 +40,17 @@ function App() {
     setUserProfileIsShown(false);
   };
 
+  //Not working
+
   const consoleLogHandler = () => {
     console.log(isLoggedIn);
-    console.log(userProfileIsShown);
+    console.log(paintingsData);
   };
 
   const registeredUsersReducer = (state, action) => {
     return { response: action.response };
   };
-  const [isLoggedIn, setIsLoggedIn] = useState({
-    email: " ",
-    isLoggedIn: false,
-  });
+
   const isLoggedInHandler = (emailVal, isLoggedInVal) => {
     setIsLoggedIn({ email: emailVal, isLoggedIn: isLoggedInVal });
   };
@@ -92,9 +91,47 @@ function App() {
     console.log(data);
     fetchUsersHandler();
   }
+
+  const getStoreDataHandler = useCallback(async () => {
+    const response = await fetch(
+      "https://paintings4sale-28dda-default-rtdb.europe-west1.firebasedatabase.app/store.json"
+    );
+    const data = await response.json();
+    console.log(data);
+    // for (const key in data) {
+    //   users.push({
+    //     email: data[key].email,
+    //     password: data[key].password,
+    //   });
+    // }
+    const loadedData = [];
+
+    for (const key in data) {
+      loadedData.push({
+        id: key,
+        price: data[key].price,
+        name: data[key].name,
+        description: data[key].description,
+        type: data[key].type,
+        image: data[key].image,
+        theme: data[key].theme,
+      });
+    }
+
+    setPaintingsData(loadedData);
+    //not working !!!
+  }, []);
+  useEffect(() => {
+    getStoreDataHandler();
+  }, []);
   //Display login/register form
   return (
-    <Fragment>
+    <PaintingsContext.Provider
+      value={{
+        getPaintings: getStoreDataHandler,
+        paintings: paintingsData,
+      }}
+    >
       <RegisterContext.Provider
         value={{
           registrationData: addRegisteredUserHandler,
@@ -116,7 +153,7 @@ function App() {
       <Slider />
       <button onClick={consoleLogHandler}>Check console log</button>
       <Shop />
-    </Fragment>
+    </PaintingsContext.Provider>
   );
 }
 export default App;

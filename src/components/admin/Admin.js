@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import classes from "./Admin.module.css";
 import Portrait from "../shop/Portrait";
 import Landscape from "../shop/Landscape";
+import PaintingsContext from "../../store/paintings-context";
 import { useCallback } from "react";
 const Admin = (props) => {
   const [previewUrl, setPreviewUrl] = useState("");
@@ -9,7 +10,8 @@ const Admin = (props) => {
   const [price, setPrice] = useState("");
   const [paintingType, setPaintingType] = useState("");
   const [description, setDescription] = useState("");
-
+  const [theme, setTheme] = useState("");
+  const ctx = useContext(PaintingsContext);
   const handleOnDragOver = (event) => {
     event.preventDefault();
   };
@@ -22,7 +24,6 @@ const Admin = (props) => {
   const nameChangeHandler = (event) => {
     setName(event.target.value);
     console.log(event.target.value);
-    console.log(storageData);
   };
   const priceChangeHandler = (event) => {
     setPrice(event.target.value);
@@ -35,46 +36,18 @@ const Admin = (props) => {
         setPaintingType(event.target.value));
     console.log(event.target.value);
   };
+  const themeChangeHandler = (event) => {
+    setTheme(event.target.value);
+  };
+
   const descriptionChangeHandler = (event) => {
     setDescription(event.target.value);
     console.log(event.target.value);
   };
 
-  const [storageData, setStorageData] = useState({});
-  const [paintingsList, setPaintingsList] = useState("");
-
-  const getStoreDataHandler = useCallback(async () => {
-    const response = await fetch(
-      "https://paintings4sale-28dda-default-rtdb.europe-west1.firebasedatabase.app/store.json"
-    );
-    const data = await response.json();
-    console.log(data);
-    // for (const key in data) {
-    //   users.push({
-    //     email: data[key].email,
-    //     password: data[key].password,
-    //   });
-    // }
-    const paintingsListHandler = () => {
-      for (const key in storageData) {
-        return (
-          <tr>
-            <td>{storageData[key].name}</td>
-            <td>{storageData[key].price}</td>
-            <td>{storageData[key].description}</td>
-            <td>{storageData[key].type}</td>
-            <td>{storageData[key].image}</td>
-          </tr>
-        );
-      }
-    };
-
-    setStorageData({ data });
-    setPaintingsList(paintingsListHandler);
-  }, [storageData]);
-  // useEffect(() => {
-  //   getStoreDataHandler();
-  // }, [getStoreDataHandler]);
+  useEffect(() => {
+    ctx.getPaintings();
+  }, []);
 
   async function addPainting(paintingData) {
     const response = await fetch(
@@ -87,20 +60,22 @@ const Admin = (props) => {
     );
     const data = await response.json();
     console.log(data);
+    ctx.getPaintings();
   }
 
   const submitHandler = (event) => {
     event.preventDefault();
-    if (previewUrl && name && price && paintingType && description) {
+    if (previewUrl && name && price && paintingType && description && theme) {
       const dummyPortrait = {
         name: name,
         price: price,
         type: paintingType,
+        theme: theme,
         description: description,
         image: previewUrl,
       };
       addPainting(dummyPortrait);
-      getStoreDataHandler();
+      ctx.getPaintings();
       console.log(dummyPortrait);
     }
   };
@@ -113,7 +88,7 @@ const Admin = (props) => {
           <input type="text" id="name" onChange={nameChangeHandler} />
           <label htmlFor="price">Price</label>
           <input type="number" id="price" onChange={priceChangeHandler} />
-
+          <label>Type</label>
           <input
             list="paintingTypes"
             name="paintingType"
@@ -123,6 +98,8 @@ const Admin = (props) => {
             <option value="Portrait" />
             <option value="Landscape" />
           </datalist>
+          <label htmlFor="theme">Theme</label>
+          <input type="text" id="theme" onChange={themeChangeHandler} />
           <label htmlFor="description">Description</label>
           <textarea
             type="text"
@@ -164,19 +141,40 @@ const Admin = (props) => {
       </form>
       <div className={classes["paintings-list-container"]}>
         <table>
-          <tr>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Description</th>
-            <th>Type</th>
-            <th>Image</th>
-          </tr>
-          {paintingsList}
+          <tbody>
+            <tr>
+              <th>Name</th>
+              <th>Type</th>
+              <th>Id</th>
+              <th>Theme</th>
+              <th>Price</th>
+              <th>Description</th>
+
+              <th>Image</th>
+            </tr>
+          </tbody>
+          {ctx.paintings &&
+            ctx.paintings.map((painting) => {
+              return (
+                <tbody key={painting.id}>
+                  <tr>
+                    <td>{painting.name}</td>
+                    <td>{painting.type}</td>
+                    <td>{painting.id}</td>
+                    <td>{painting.theme}</td>
+                    <td>{painting.price}</td>
+                    <td>{painting.description}</td>
+
+                    <td>{painting.image}</td>
+                  </tr>
+                </tbody>
+              );
+            })}
         </table>
       </div>
       {/* <img src={storageData.data["-NNC2cqo_y_mNBuKFjPg"].image} /> */}
     </div>
   );
 };
-
+//MAP NOT WORKING !!!!!!!!!!!!!!!!!!!!!!!!!
 export default Admin;

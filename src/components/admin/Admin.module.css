@@ -5,14 +5,15 @@
   height: auto;
   margin: 6vh 15vh;
   border-radius: 35px;
-  background-color: red;
+  background: rgba(204, 55, 55, 0.6);
+  justify-content: center;
+  color: black;
 }
 .admin-container form {
   display: flex;
   flex-direction: row;
   width: 80%;
   height: auto;
-  background-color: yellow;
   padding: 5vh;
   margin: 5vh 10vh;
   justify-content: center;
@@ -31,7 +32,8 @@
   height: auto;
   min-height: 15vh;
   width: auto;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 5px;
   justify-content: center;
   align-items: center;
 }
@@ -39,39 +41,45 @@
   height: 10vh;
   text-align: justify;
   margin: 1vh 0;
-  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 .admin-container input,
 datalist {
   margin: 1vh 0;
   width: auto;
-  height: 3vh;
-  background-color: rgba(0, 0, 0, 0.3);
+  height: 4vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 5px;
+  color: white;
 }
 .admin-container label {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: bold;
 }
 .paintings-list-container {
   display: flex;
   flex-direction: column;
-  background-color: green;
-  width: 100%;
+  width: 86%;
+  margin: 5vh 10vh;
   height: auto;
-  justify-content: center;
-  align-items: center;
 }
 .paintings-list-container table {
-  width: 90%;
-  background-color: yellow;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  font-weight: 500;
+  color: white;
 }
 .paintings-list-container th {
   background-color: red;
 }
 .paintings-list-container td {
   padding: 2vh;
+  height: auto;
+  border: 1px solid black;
+  max-width: 10vh;
+  word-wrap: break-word;
 }
 .paintings-list-container tr {
   padding: 1vh;
-  background-color: purple;
 }
