@@ -45,6 +45,7 @@ function App() {
   const consoleLogHandler = () => {
     console.log(isLoggedIn);
     console.log(paintingsData);
+    console.log(paintingsData);
   };
 
   const registeredUsersReducer = (state, action) => {

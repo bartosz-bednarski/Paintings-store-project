@@ -4,8 +4,11 @@ import Portrait from "../shop/Portrait";
 import Landscape from "../shop/Landscape";
 import PaintingsContext from "../../store/paintings-context";
 import { useCallback } from "react";
+import { storage } from "./firebase";
+import { uploadBytes, ref, getDownloadURL } from "firebase/storage";
 const Admin = (props) => {
   const [previewUrl, setPreviewUrl] = useState("");
+  const [imageBlob, setImageBlob] = useState("");
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [paintingType, setPaintingType] = useState("");
@@ -17,7 +20,11 @@ const Admin = (props) => {
   };
   const handleOnDrop = (event) => {
     event.preventDefault();
-    setPreviewUrl(URL.createObjectURL(event.dataTransfer.files[0]));
+
+    let blobUrl = URL.createObjectURL(event.dataTransfer.files[0]);
+    setImageBlob(blobUrl);
+    // setPreviewUrl(blobUrl);
+    setPreviewUrl(event.dataTransfer.files[0]);
     console.log(event.dataTransfer.files[0]);
   };
 
@@ -27,6 +34,7 @@ const Admin = (props) => {
   };
   const priceChangeHandler = (event) => {
     setPrice(event.target.value);
+
     console.log(event.target.value);
   };
   const typeChangeHandler = (event) => {
@@ -34,6 +42,7 @@ const Admin = (props) => {
       setPaintingType(event.target.value)) ||
       (event.target.value === "Landscape" &&
         setPaintingType(event.target.value));
+
     console.log(event.target.value);
   };
   const themeChangeHandler = (event) => {
@@ -42,6 +51,7 @@ const Admin = (props) => {
 
   const descriptionChangeHandler = (event) => {
     setDescription(event.target.value);
+
     console.log(event.target.value);
   };
 
@@ -63,20 +73,37 @@ const Admin = (props) => {
     ctx.getPaintings();
   }
 
-  const submitHandler = (event) => {
+  const submitHandler = async (event) => {
     event.preventDefault();
+    // const image1 = new File([previewUrl, `${name}.svg`]);
     if (previewUrl && name && price && paintingType && description && theme) {
+      const storageRef = ref(storage, previewUrl.name);
+      console.log(storageRef);
+      await uploadBytes(storageRef, previewUrl).then(() => {
+        console.log("file uploaded");
+      });
+      const responce = await getDownloadURL(storageRef);
+      const url = responce;
+      console.log(url);
+
+      // const fileRef = storage.child(previewUrl.name);
+      // fileRef.put(previewUrl).then(() => {
+      //   console.log("file uploaded");
+      // });
+
       const dummyPortrait = {
         name: name,
         price: price,
         type: paintingType,
         theme: theme,
         description: description,
-        image: previewUrl,
+        image: url,
       };
+      console.log(dummyPortrait);
       addPainting(dummyPortrait);
       ctx.getPaintings();
-      console.log(dummyPortrait);
+      setPreviewUrl(false);
+      event.target.reset();
     }
   };
 
@@ -112,7 +139,6 @@ const Admin = (props) => {
             onDrop={handleOnDrop}
           >
             <h1>Drag and drop image</h1>
-            {/* {previewUrl && <img src={previewUrl} />} */}
           </div>
           <button>Accept</button>
         </div>
@@ -123,7 +149,7 @@ const Admin = (props) => {
               price: `$${price}`,
               description: { description },
               type: paintingType,
-              image: `${previewUrl}`,
+              image: `${imageBlob}`,
             }}
           />
         )}
@@ -134,7 +160,7 @@ const Admin = (props) => {
               price: `$${price}`,
               description: { description },
               type: paintingType,
-              image: `${previewUrl}`,
+              image: `${imageBlob}`,
             }}
           />
         )}

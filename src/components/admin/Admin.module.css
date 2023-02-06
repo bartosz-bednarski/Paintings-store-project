@@ -71,7 +71,7 @@ datalist {
   color: white;
 }
 .paintings-list-container th {
-  background-color: red;
+  background-color: rgb(204, 55, 55);
 }
 .paintings-list-container td {
   padding: 2vh;
