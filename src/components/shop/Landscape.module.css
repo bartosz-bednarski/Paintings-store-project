@@ -1,13 +1,25 @@
 .landscape-box {
   display: flex;
   flex-direction: column;
-  width: fit-content;
+  width: 35vh;
   height: fit-content;
   padding: 4vh 4vh;
   text-align: center;
+  cursor: pointer;
 }
 
 .landscape-box img {
-  width: 45vh;
-  height: 30vh;
+  width: 35vh;
+  height: 25vh;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.landscape-box span {
+  width: auto;
+  height: auto;
+  margin: 0vh 10vh;
+  padding: 0.7vh 0;
+  background-color: wheat;
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
 }

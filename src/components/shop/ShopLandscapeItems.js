@@ -22,22 +22,27 @@ const ShopLandscapeItems = (props) => {
   }
   return (
     <div className={classes["ShopLandscapeItems-container"]}>
-      {landscapes.map((landscape) => {
-        if (landscape.type === "Landscape") {
-          return (
-            <Landscape
-              key={landscape.id}
-              data={{
-                name: landscape.name,
-                price: `$${landscape.price}`,
-                description: landscape.description,
-                type: landscape.type,
-                image: `${landscape.image}`,
-              }}
-            />
-          );
-        }
-      })}
+      <div className={classes["ShopLandscapeItems-box"]}>
+        <h1>Landscapes</h1>
+        {landscapes.map((landscape) => {
+          if (landscape.type === "Landscape") {
+            return (
+              <Landscape
+                key={landscape.id}
+                data={{
+                  id: landscape.id,
+                  name: landscape.name,
+                  price: landscape.price,
+                  description: landscape.description,
+                  type: landscape.type,
+                  image: landscape.image,
+                  theme: landscape.theme,
+                }}
+              />
+            );
+          }
+        })}
+      </div>
     </div>
   );
 };

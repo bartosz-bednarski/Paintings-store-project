@@ -1,12 +1,33 @@
 .ShopLandscapeItems-container {
+  display: block;
+  width: 100%;
+  height: auto;
+  background-color: white;
+  margin-top: 14vh;
+
+  background: white;
+}
+.ShopLandscapeItems-box {
   display: flex;
   flex-direction: row;
   width: auto;
-  padding: 5vh 10vh;
+  height: auto;
+  padding: 7vh 12vh;
+  margin: 6vh 15vh;
   column-gap: 5vh;
   row-gap: 5vh;
   flex-wrap: wrap;
   min-height: 80vh;
-  height: auto;
-  background: rgb(204, 55, 55);
+  background: wheat;
+  border-radius: 35px;
+}
+.ShopLandscapeItems-box h1 {
+  width: 100%;
+  text-align: center;
+  border: 0px;
+  margin: 0vh 45vh;
+  padding: 0.7vh 0;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }

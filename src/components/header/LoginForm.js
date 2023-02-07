@@ -69,6 +69,7 @@ const LoginForm = (props) => {
           <button>Login</button>
         </div>
       </form>
+      <button onClick={props.onShowRegisterForm}>Show register</button>
     </Modal>
   );
 };

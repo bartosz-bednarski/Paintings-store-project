@@ -1,0 +1,51 @@
+.painting-container {
+  width: 100%;
+  height: 70vh;
+  background-color: wheat;
+  border-radius: 10px;
+  display: flex;
+  margin: auto;
+}
+.painting-box {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  column-gap: 10%;
+  margin: 5vh;
+}
+.image-box {
+  display: flex;
+  width: 50%;
+  height: 100%;
+  align-items: center;
+}
+.image-box img {
+  width: 100%;
+  height: auto;
+  max-height: 100%;
+  margin: 5% 0;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+.data-box {
+  display: flex;
+  flex-direction: column;
+  width: 38%;
+  padding: 1%;
+  height: auto;
+  margin: 5% 0;
+  border-radius: 10px;
+  background-color: white;
+  font-weight: bold;
+}
+.data-box p {
+  background-color: wheat;
+  padding: 0.5em;
+  border-radius: 5px;
+}
+.price-box {
+  display: flex;
+  height: auto;
+  justify-content: space-between;
+  margin: auto 1vh;
+}

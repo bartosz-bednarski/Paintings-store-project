@@ -14,6 +14,8 @@ function App() {
   const [registerFormIsShown, setRegisterFormIsShown] = useState(false);
   const [userProfileIsShown, setUserProfileIsShown] = useState(false);
   const [paintingsData, setPaintingsData] = useState([]);
+  const [loginRegisterMenuIsShown, setloginRegisterMenuIsShown] =
+    useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState({
     email: " ",
     isLoggedIn: false,
@@ -38,6 +40,13 @@ function App() {
   };
   const hideUserProfile = () => {
     setUserProfileIsShown(false);
+  };
+
+  const showLoginRegisterMenu = () => {
+    setRegisterFormIsShown(true);
+  };
+  const hideLoginRegisterMenu = () => {
+    setRegisterFormIsShown(false);
   };
 
   //Not working
@@ -141,12 +150,16 @@ function App() {
           userIsLoggedIn: isLoggedIn,
         }}
       >
-        {loginFormIsShown && <LoginForm onClose={hideLoginForm} />}
+        {loginFormIsShown && !registerFormIsShown && (
+          <LoginForm
+            onClose={hideLoginForm}
+            onShowRegisterForm={showRegisterForm}
+          />
+        )}
         {registerFormIsShown && <RegisterForm onClose={hideRegisterForm} />}
         {userProfileIsShown && <UserProfile onClose={hideUserProfile} />}
         <Header
           onShowloginForm={showLoginForm}
-          onShowRegisterForm={showRegisterForm}
           onShowUserProfile={showUserProfile}
         ></Header>
       </RegisterContext.Provider>

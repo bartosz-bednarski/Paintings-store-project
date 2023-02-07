@@ -1,13 +1,24 @@
 .portraitItem {
   display: flex;
   flex-direction: column;
-  width: 30vh;
+  width: 26vh;
   height: fit-content;
   padding: 4vh 4vh;
   text-align: center;
+  cursor: pointer;
 }
 
 .portraitItem img {
-  width: 30vh;
-  height: 45vh;
+  width: 26vh;
+  height: 35vh;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+.portraitItem span {
+  width: auto;
+  height: auto;
+  margin: 0vh 8vh;
+  padding: 0.7vh 0;
+  background-color: wheat;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
 }

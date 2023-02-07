@@ -4,7 +4,10 @@
   padding: 5vh;
   font-size: 16px;
   font-weight: 500;
-  width: auto;
+  width: 50%;
+  background-color: white;
+  margin: 0 22%;
+  border-radius: 10px;
 }
 .registerForm-container label {
   padding: 1vh 0;

@@ -1,6 +1,6 @@
 .card-container {
   border-radius: 14px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-  background-color: wheat;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  background-color: white;
   height: fit-content;
 }

@@ -27,22 +27,27 @@ const ShopPortraitItems = (props) => {
 
   return (
     <div className={classes["ShopPortraitItems-container"]}>
-      {portraits.map((portrait) => {
-        return (
-          <Portrait
-            key={portrait.id}
-            data={{
-              name: portrait.name,
-              price: `$${portrait.price}`,
-              description: portrait.description,
-              type: portrait.type,
-              image: `${portrait.image}`,
-            }}
-          />
-        );
-      })}
+      <div className={classes["ShopPortraitItems-box"]}>
+        <h1>Portraits</h1>
+        {portraits.map((portrait) => {
+          return (
+            <Portrait
+              key={portrait.id}
+              data={{
+                id: portrait.id,
+                name: portrait.name,
+                price: portrait.price,
+                description: portrait.description,
+                type: portrait.type,
+                image: portrait.image,
+                theme: portrait.theme,
+              }}
+            />
+          );
+        })}
 
-      <button onClick={consoleLogHandler}>dummy console log</button>
+        <button onClick={consoleLogHandler}>dummy console log</button>
+      </div>
     </div>
   );
 };
