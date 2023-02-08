@@ -30,7 +30,10 @@ const Header = (props) => {
           </li>
         )}
         <li>
-          <button className={classes["basket-button"]}>
+          <button
+            className={classes["basket-button"]}
+            onClick={props.onShowBasket}
+          >
             <img src={Icon} className={classes.icon} />
             <span className={classes.badge}>0</span>
           </button>

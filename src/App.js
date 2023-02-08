@@ -9,13 +9,13 @@ import RegisterContext from "./store/register-context";
 import UserProfile from "./components/header/UserProfile";
 import Admin from "./components/admin/Admin";
 import PaintingsContext from "./store/paintings-context";
+import Basket from "./components/header/Basket";
 function App() {
   const [loginFormIsShown, setLoginFormIsShown] = useState(false);
   const [registerFormIsShown, setRegisterFormIsShown] = useState(false);
   const [userProfileIsShown, setUserProfileIsShown] = useState(false);
   const [paintingsData, setPaintingsData] = useState([]);
-  const [loginRegisterMenuIsShown, setloginRegisterMenuIsShown] =
-    useState(false);
+  const [basketIsShown, setBasketIsShown] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState({
     email: " ",
     isLoggedIn: false,
@@ -41,20 +41,19 @@ function App() {
   const hideUserProfile = () => {
     setUserProfileIsShown(false);
   };
-
-  const showLoginRegisterMenu = () => {
-    setRegisterFormIsShown(true);
+  const showBasket = () => {
+    setBasketIsShown(true);
   };
-  const hideLoginRegisterMenu = () => {
-    setRegisterFormIsShown(false);
+
+  const hideBasket = () => {
+    setBasketIsShown(false);
   };
 
   //Not working
 
   const consoleLogHandler = () => {
     console.log(isLoggedIn);
-    console.log(paintingsData);
-    console.log(paintingsData);
+    console.log(basketItem);
   };
 
   const registeredUsersReducer = (state, action) => {
@@ -68,6 +67,40 @@ function App() {
     registeredUsersReducer,
     { response: [] }
   );
+
+  const basketReducer = (state, action) => {
+    if (action.type === "ADD") {
+      const updatedTotalAmount =
+        state.totalAmount +
+        action.painting[0].price * action.painting[0].amount;
+      let updatedPaintings;
+      const existingPaintingIndex = state.paintings.findIndex(
+        (item) => item.id === action.painting[0].id
+      );
+      const existingPainting = state.paintings[existingPaintingIndex];
+      if (existingPainting) {
+        const updatedPainting = {
+          ...existingPainting,
+          amount: existingPainting.amount + action.painting[0].amount,
+        };
+        updatedPaintings = [...state.paintings];
+        updatedPaintings[existingPaintingIndex] = updatedPainting;
+      } else {
+        updatedPaintings = state.paintings.concat(action.painting);
+      }
+
+      return {
+        // action: action,
+        paintings: updatedPaintings,
+        totalAmount: updatedTotalAmount,
+        // existingPainting: existingPainting,
+      };
+    }
+  };
+  const [basketItem, dispatchBasketItem] = useReducer(basketReducer, {
+    paintings: [],
+    totalAmount: 0,
+  });
 
   const fetchUsersHandler = useCallback(async () => {
     const response = await fetch(
@@ -140,6 +173,8 @@ function App() {
       value={{
         getPaintings: getStoreDataHandler,
         paintings: paintingsData,
+        basketItems: basketItem,
+        addBasketItem: dispatchBasketItem,
       }}
     >
       <RegisterContext.Provider
@@ -158,9 +193,11 @@ function App() {
         )}
         {registerFormIsShown && <RegisterForm onClose={hideRegisterForm} />}
         {userProfileIsShown && <UserProfile onClose={hideUserProfile} />}
+        {basketIsShown && <Basket onClose={hideBasket} />}
         <Header
           onShowloginForm={showLoginForm}
           onShowUserProfile={showUserProfile}
+          onShowBasket={showBasket}
         ></Header>
       </RegisterContext.Provider>
       {isLoggedIn.email === "admin1234@gmail.com" && <Admin />}

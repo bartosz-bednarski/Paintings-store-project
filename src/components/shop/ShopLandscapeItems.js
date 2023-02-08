@@ -37,6 +37,7 @@ const ShopLandscapeItems = (props) => {
                   type: landscape.type,
                   image: landscape.image,
                   theme: landscape.theme,
+                  amount: 1,
                 }}
               />
             );

@@ -1,6 +1,14 @@
 import classes from "./Painting.module.css";
 import Modal from "../UI/Modal";
+import { useContext } from "react";
+import PaintingsContext from "../../store/paintings-context";
 const Painting = (props) => {
+  const ctx = useContext(PaintingsContext);
+
+  const addBasketItemHandler = () => {
+    ctx.addBasketItem({ type: "ADD", painting: [props.data] });
+  };
+
   return (
     <Modal onClose={props.onClose}>
       <div className={classes["painting-container"]}>
@@ -16,13 +24,7 @@ const Painting = (props) => {
             <p>Size: 40 x 44"</p>
             <div className={classes["price-box"]}>
               <h3>Price: {props.data.price}.00 $</h3>
-              <button
-                onClick={() => {
-                  console.log(props.data);
-                }}
-              >
-                Order
-              </button>
+              <button onClick={addBasketItemHandler}>Order</button>
             </div>
           </div>
         </div>

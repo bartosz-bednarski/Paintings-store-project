@@ -41,6 +41,7 @@ const ShopPortraitItems = (props) => {
                 type: portrait.type,
                 image: portrait.image,
                 theme: portrait.theme,
+                amount: 1,
               }}
             />
           );

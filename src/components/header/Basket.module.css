@@ -1,0 +1,42 @@
+.basket-container {
+  display: flex;
+  width: 100%;
+  height: auto;
+  background-color: white;
+  justify-content: center;
+}
+.basket-box {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  width: 50%;
+  background-color: red;
+  padding: 3vh;
+}
+
+.basket-box ul {
+  list-style-type: none;
+  padding: 0;
+  background-color: green;
+}
+.basket-box li {
+  display: flex;
+  justify-content: space-between;
+  background-color: yellow;
+  margin: 2vh 0;
+  padding: 1vh;
+  border-radius: 10px;
+}
+.total-price {
+  display: inline-flex;
+  background-color: pink;
+  align-self: flex-end;
+  width: fit-content;
+  padding: 1vh;
+  margin: 2vh 0;
+}
+.amount-price-box {
+  display: flex;
+  column-gap: 3vh;
+  flex-direction: row;
+}
