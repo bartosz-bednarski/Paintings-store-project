@@ -75,7 +75,6 @@ const Admin = (props) => {
 
   const submitHandler = async (event) => {
     event.preventDefault();
-    // const image1 = new File([previewUrl, `${name}.svg`]);
     if (previewUrl && name && price && paintingType && description && theme) {
       const storageRef = ref(storage, previewUrl.name);
       console.log(storageRef);
@@ -85,11 +84,6 @@ const Admin = (props) => {
       const responce = await getDownloadURL(storageRef);
       const url = responce;
       console.log(url);
-
-      // const fileRef = storage.child(previewUrl.name);
-      // fileRef.put(previewUrl).then(() => {
-      //   console.log("file uploaded");
-      // });
 
       const dummyPortrait = {
         name: name,
