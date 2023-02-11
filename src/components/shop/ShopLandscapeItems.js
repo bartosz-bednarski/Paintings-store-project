@@ -22,8 +22,8 @@ const ShopLandscapeItems = (props) => {
   }
   return (
     <div className={classes["ShopLandscapeItems-container"]}>
+      <h1>LANDSCAPES</h1>
       <div className={classes["ShopLandscapeItems-box"]}>
-        <h1>Landscapes</h1>
         {landscapes.map((landscape) => {
           if (landscape.type === "Landscape") {
             return (

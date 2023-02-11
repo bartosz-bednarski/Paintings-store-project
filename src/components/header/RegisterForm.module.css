@@ -1,28 +1,39 @@
 .registerForm-container {
+  position: absolute;
+  top: 10%;
+  left: 0vw;
   display: flex;
   flex-direction: column;
   padding: 5vh;
-  font-size: 16px;
-  font-weight: 500;
-  width: 50%;
-  background-color: white;
-  margin: 0 22%;
+  width: 30vw;
+  background: rgba(245, 222, 179, 0.9);
   border-radius: 10px;
 }
-.registerForm-container label {
+.registerForm-box {
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+  font-weight: 500;
+  width: 100%;
+  background: transparent;
+  border-radius: 10px;
+}
+.registerForm-box label {
   padding: 1vh 0;
 }
 
-.registerForm-container input {
+.registerForm-box input {
   height: 3vh;
   border: 1px solid grey;
 }
-.registerForm-container button {
-  margin: 3vh 0 1vh 0;
-  padding: 1vh;
-  width: auto;
-}
-.registerForm-container p {
+.registerForm-box p {
   color: red;
   font-size: 13px;
+}
+.register-paragraph {
+  color: black;
+  cursor: pointer;
+  font-size: 17px;
+  font-weight: 500;
+  text-align: center;
 }

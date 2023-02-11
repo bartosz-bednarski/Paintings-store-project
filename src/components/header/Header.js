@@ -4,9 +4,12 @@ import UserIcon from "../../assets/user-icon.png";
 import Icon from "../../assets/cart.png";
 import { useContext } from "react";
 import RegisterContext from "../../store/register-context";
+import PaintingsContext from "../../store/paintings-context";
 const Header = (props) => {
+  const ctxPaintings = useContext(PaintingsContext);
   const ctx = useContext(RegisterContext);
   const isLoggedIn = ctx.userIsLoggedIn;
+  const badge = ctxPaintings.basketItems.paintings.length;
   return (
     <div className={classes["header-container"]}>
       <Logo />
@@ -24,7 +27,10 @@ const Header = (props) => {
         )}
         {isLoggedIn.isLoggedIn && (
           <li>
-            <button onClick={props.onShowUserProfile}>
+            <button
+              className={classes["profile-button"]}
+              onClick={props.onShowUserProfile}
+            >
               {isLoggedIn.email}
             </button>
           </li>
@@ -35,7 +41,7 @@ const Header = (props) => {
             onClick={props.onShowBasket}
           >
             <img src={Icon} className={classes.icon} />
-            <span className={classes.badge}>0</span>
+            <span className={classes.badge}>{badge}</span>
           </button>
         </li>
       </ul>

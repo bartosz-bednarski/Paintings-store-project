@@ -6,9 +6,9 @@ import { useContext } from "react";
 const ShopPortraitItems = (props) => {
   const ctx = useContext(PaintingsContext);
   const data = ctx.paintings;
-  const consoleLogHandler = () => {
-    console.log(data);
-  };
+  // const consoleLogHandler = () => {
+  //   console.log(data);
+  // };
 
   const portraits = [];
   for (const key in data) {
@@ -27,8 +27,8 @@ const ShopPortraitItems = (props) => {
 
   return (
     <div className={classes["ShopPortraitItems-container"]}>
+      <h1>PORTRAITS</h1>
       <div className={classes["ShopPortraitItems-box"]}>
-        <h1>Portraits</h1>
         {portraits.map((portrait) => {
           return (
             <Portrait
@@ -47,7 +47,7 @@ const ShopPortraitItems = (props) => {
           );
         })}
 
-        <button onClick={consoleLogHandler}>dummy console log</button>
+        {/* <button onClick={consoleLogHandler}>dummy console log</button> */}
       </div>
     </div>
   );

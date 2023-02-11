@@ -2,6 +2,7 @@ import classes from "./RegisterForm.module.css";
 import Modal from "../UI/Modal";
 import { useContext, useState } from "react";
 import RegisterContext from "../../store/register-context";
+import Button from "../UI/Button";
 const LoginForm = (props) => {
   const [emailValue, setEmailValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
@@ -54,22 +55,29 @@ const LoginForm = (props) => {
   };
   return (
     <Modal onClose={props.onClose}>
-      <form onSubmit={submitHandler}>
-        <div className={classes["registerForm-container"]}>
-          <label htmlFor="e-mail">E-mail</label>
-          <input type="email" id="e-mail" onChange={emailChangeHandler} />
-          {warningMessage.type === "WARNING_MESSAGE_EMAIL" && (
-            <p>{warningMessage.value}</p>
-          )}
-          <label htmlFor="password">Password</label>
-          <input type="text" id="password" onChange={passwordChangeHandler} />
-          {warningMessage.type === "WARNING_MESSAGE_PASSWORD" && (
-            <p>{warningMessage.value}</p>
-          )}
-          <button>Login</button>
-        </div>
-      </form>
-      <button onClick={props.onShowRegisterForm}>Show register</button>
+      <div className={classes["registerForm-container"]}>
+        <form onSubmit={submitHandler}>
+          <div className={classes["registerForm-box"]}>
+            <label htmlFor="e-mail">E-mail</label>
+            <input type="email" id="e-mail" onChange={emailChangeHandler} />
+            {warningMessage.type === "WARNING_MESSAGE_EMAIL" && (
+              <p>{warningMessage.value}</p>
+            )}
+            <label htmlFor="password">Password</label>
+            <input type="text" id="password" onChange={passwordChangeHandler} />
+            {warningMessage.type === "WARNING_MESSAGE_PASSWORD" && (
+              <p>{warningMessage.value}</p>
+            )}
+            <Button>Login</Button>
+          </div>
+        </form>
+        <p
+          onClick={props.onShowRegisterForm}
+          className={classes["register-paragraph"]}
+        >
+          Don't have an account? Create it for free.
+        </p>
+      </div>
     </Modal>
   );
 };

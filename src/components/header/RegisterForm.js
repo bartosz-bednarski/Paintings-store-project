@@ -2,6 +2,7 @@ import classes from "./RegisterForm.module.css";
 import Modal from "../UI/Modal";
 import { useContext, useEffect, useReducer, useState } from "react";
 import RegisterContext from "../../store/register-context";
+import Button from "../UI/Button";
 const emailReducer = (state, action) => {
   if (action.type === "USER_INPUT") {
     return {
@@ -137,32 +138,34 @@ const RegisterForm = (props) => {
 
   return (
     <Modal onClose={props.onClose}>
-      <form onSubmit={submitHandler}>
-        <div className={classes["registerForm-container"]}>
-          <label htmlFor="email">E-mail</label>
-          <input type="email" id="email" onChange={emailChangeHandler} />
+      <div className={classes["registerForm-container"]}>
+        <form onSubmit={submitHandler}>
+          <div className={classes["registerForm-box"]}>
+            <label htmlFor="email">E-mail</label>
+            <input type="email" id="email" onChange={emailChangeHandler} />
 
-          <label htmlFor="password">Password</label>
-          <input type="text" id="password" onChange={passwordChangeHandler} />
+            <label htmlFor="password">Password</label>
+            <input type="text" id="password" onChange={passwordChangeHandler} />
 
-          <label htmlFor="passwordConfirm">Confirm password</label>
-          <input
-            type="text"
-            id="passwordConfirm"
-            onChange={passwordConfirmChangeHandler}
-          />
-          {warningMessage.type === "WARNING_MESSAGE_DIFFERENT PASSWORDS" && (
-            <p>{warningMessage.value}</p>
-          )}
-          {warningMessage.type === "WARNING_MESSAGE_TOO_SHORT_PASSWORD" && (
-            <p>{warningMessage.value}</p>
-          )}
-          {warningMessage.type === "WARNING_MESSAGE_DUPLICATED_EMAIL" && (
-            <p>{warningMessage.value}</p>
-          )}
-          <button>Register</button>
-        </div>
-      </form>
+            <label htmlFor="passwordConfirm">Confirm password</label>
+            <input
+              type="text"
+              id="passwordConfirm"
+              onChange={passwordConfirmChangeHandler}
+            />
+            {warningMessage.type === "WARNING_MESSAGE_DIFFERENT PASSWORDS" && (
+              <p>{warningMessage.value}</p>
+            )}
+            {warningMessage.type === "WARNING_MESSAGE_TOO_SHORT_PASSWORD" && (
+              <p>{warningMessage.value}</p>
+            )}
+            {warningMessage.type === "WARNING_MESSAGE_DUPLICATED_EMAIL" && (
+              <p>{warningMessage.value}</p>
+            )}
+            <Button>Register</Button>
+          </div>
+        </form>
+      </div>
     </Modal>
   );
 };

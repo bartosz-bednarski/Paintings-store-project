@@ -1,51 +1,86 @@
 .painting-container {
-  width: 100%;
-  height: 70vh;
-  background-color: wheat;
+  position: absolute;
+  top: 10%;
+  left: -10vw;
+  width: 60vw;
+  height: auto;
+  min-height: 70vh;
+  background: rgba(245, 222, 179, 0.9);
+
   border-radius: 10px;
   display: flex;
   margin: auto;
 }
 .painting-box {
+  position: relative;
   display: flex;
   flex-direction: row;
+  row-gap: 1vh;
   width: 100%;
+  height: auto;
   column-gap: 10%;
-  margin: 5vh;
+  margin: 5vh 5vw;
 }
 .image-box {
   display: flex;
   width: 50%;
   height: 100%;
+  margin: 1vh 1vw;
   align-items: center;
 }
 .image-box img {
   width: 100%;
   height: auto;
-  max-height: 100%;
   margin: 5% 0;
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
 }
 .data-box {
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 38%;
-  padding: 1%;
+  padding: 2vh 2vw;
   height: auto;
-  margin: 5% 0;
+  margin: 0 0;
   border-radius: 10px;
-  background-color: white;
-  font-weight: bold;
+  background: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  font-weight: 500;
+}
+.data-box h1 {
+  text-align: center;
+  padding: 0;
 }
 .data-box p {
-  background-color: wheat;
   padding: 0.5em;
-  border-radius: 5px;
+  font-size: 1em;
+  border-bottom: 1px solid black;
 }
 .price-box {
   display: flex;
   height: auto;
-  justify-content: space-between;
-  margin: auto 1vh;
+  flex-direction: column;
+  align-items: center;
+  margin: 1vh auto;
+  padding: 1vh;
+}
+.price-box p {
+  font-size: 24px;
+  border: 0px;
+  padding: 0;
+}
+
+@media only screen and (max-width: 900px) {
+  .painting-box {
+    overflow-y: scroll;
+    flex-wrap: wrap;
+    margin: 0;
+  }
+  .image-box {
+    width: 100%;
+  }
+  .data-box {
+    width: 100%;
+  }
 }

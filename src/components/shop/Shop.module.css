@@ -4,4 +4,8 @@
   min-height: 100vh;
   height: auto;
   width: 100%;
+  color: white;
+}
+.shop-container h1 {
+  font-weight: 700;
 }

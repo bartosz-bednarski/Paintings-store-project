@@ -10,24 +10,28 @@
 .ShopLandscapeItems-box {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   width: auto;
   height: auto;
-  padding: 7vh 12vh;
-  margin: 6vh 15vh;
+  justify-content: center;
+  padding: 7vh 0vh;
+  margin: 6vh 7vw;
   column-gap: 5vh;
   row-gap: 5vh;
   flex-wrap: wrap;
-  min-height: 80vh;
-  background: wheat;
+  background: rgba(245, 222, 179, 0.5);
   border-radius: 35px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
 }
-.ShopLandscapeItems-box h1 {
-  width: 100%;
+.ShopLandscapeItems-container h1 {
+  width: auto;
+  height: auto;
   text-align: center;
   border: 0px;
-  margin: 0vh 45vh;
+  margin: 6vh 7vw;
   padding: 0.7vh 0;
-  background-color: white;
+  background-color: wheat;
+  text-align: center;
   border-radius: 20px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }

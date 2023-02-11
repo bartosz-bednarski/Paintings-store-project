@@ -2,14 +2,29 @@ import classes from "./Slider.module.css";
 import SliderOne from "../../assets/slider-01.jpg";
 import SliderTwo from "../../assets/slider-02.jpg";
 import SliderThree from "../../assets/slider-03.jpg";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 
 const Slider = () => {
   const [sliderItem, dispatchSliderItem] = useState({
     painting: SliderOne,
     itemNumber: 0,
     description: "Urban landscapes -20% this week.",
+    output: (
+      <Fragment>
+        <img src={SliderOne} />
+        <h1>"Urban landscapes -20% this week."</h1>
+      </Fragment>
+    ),
   });
+
+  const SliderElements = () => {
+    return (
+      <Fragment>
+        <img src={sliderItem.painting} />
+        <h1>{sliderItem.description}</h1>
+      </Fragment>
+    );
+  };
 
   useEffect(() => {
     const dummyObject = {
@@ -51,14 +66,14 @@ const Slider = () => {
       }
       // console.log(sliderItem);
       return clearInterval(interval);
-    }, 10000);
+    }, 8000);
   }, [sliderItem]);
 
   return (
     <div className={classes["slider-container"]}>
       <div className={classes["slider-box"]}>
-        <img src={sliderItem.painting} />
-        <h1>{sliderItem.description}</h1>
+        {/* {sliderItem.output} */}
+        <SliderElements />
         <div className={classes["dots-box"]}>
           <span
             className={
@@ -83,12 +98,6 @@ const Slider = () => {
           />
         </div>
       </div>
-      {/* <div>
-        <h1>Slider 2</h1>
-      </div>
-      <div>
-        <h1>Slider 3</h1>
-      </div> */}
     </div>
   );
 };

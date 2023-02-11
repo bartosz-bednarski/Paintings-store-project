@@ -51,10 +51,10 @@ function App() {
 
   //Not working
 
-  const consoleLogHandler = () => {
-    console.log(isLoggedIn);
-    console.log(basketItem);
-  };
+  // const consoleLogHandler = () => {
+  //   console.log(isLoggedIn);
+  //   console.log(basketItem);
+  // };
 
   const registeredUsersReducer = (state, action) => {
     return { response: action.response };
@@ -71,8 +71,7 @@ function App() {
   const basketReducer = (state, action) => {
     if (action.type === "ADD") {
       const updatedTotalAmount =
-        state.totalAmount +
-        action.painting[0].price * action.painting[0].amount;
+        state.totalAmount + action.painting[0].price * 1;
       let updatedPaintings;
       const existingPaintingIndex = state.paintings.findIndex(
         (item) => item.id === action.painting[0].id
@@ -81,7 +80,7 @@ function App() {
       if (existingPainting) {
         const updatedPainting = {
           ...existingPainting,
-          amount: existingPainting.amount + action.painting[0].amount,
+          amount: existingPainting.amount + 1,
         };
         updatedPaintings = [...state.paintings];
         updatedPaintings[existingPaintingIndex] = updatedPainting;
@@ -95,9 +94,32 @@ function App() {
         totalAmount: updatedTotalAmount,
         // existingPainting: existingPainting,
       };
+    } else if (action.type === "REMOVE") {
+      let updatedPaintings;
+      const existingPaintingIndex = state.paintings.findIndex(
+        (item) => item.id === action.painting[0].id
+      );
+      const existingPainting = state.paintings[existingPaintingIndex];
+      const updatedTotalAmount = state.totalAmount - existingPainting.price;
+      if (existingPainting.amount === 1) {
+        updatedPaintings = state.paintings.filter(
+          (painting) => painting.id !== action.painting[0].id
+        );
+      } else {
+        const updatedPainting = {
+          ...existingPainting,
+          amount: existingPainting.amount - 1,
+        };
+        updatedPaintings = [...state.paintings];
+        updatedPaintings[existingPaintingIndex] = updatedPainting;
+      }
+      return { paintings: updatedPaintings, totalAmount: updatedTotalAmount };
+    } else if (action.type === "ORDERED") {
+      return { paintings: [], totalAmount: 0 };
     }
   };
   const [basketItem, dispatchBasketItem] = useReducer(basketReducer, {
+    painting: [],
     paintings: [],
     totalAmount: 0,
   });
@@ -175,6 +197,7 @@ function App() {
         paintings: paintingsData,
         basketItems: basketItem,
         addBasketItem: dispatchBasketItem,
+        removeBasketItem: dispatchBasketItem,
       }}
     >
       <RegisterContext.Provider
@@ -202,7 +225,7 @@ function App() {
       </RegisterContext.Provider>
       {isLoggedIn.email === "admin1234@gmail.com" && <Admin />}
       <Slider />
-      <button onClick={consoleLogHandler}>Check console log</button>
+      {/* <button onClick={consoleLogHandler}>Check console log</button> */}
       <Shop />
     </PaintingsContext.Provider>
   );

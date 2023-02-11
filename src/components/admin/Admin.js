@@ -3,9 +3,9 @@ import classes from "./Admin.module.css";
 import Portrait from "../shop/Portrait";
 import Landscape from "../shop/Landscape";
 import PaintingsContext from "../../store/paintings-context";
-import { useCallback } from "react";
 import { storage } from "./firebase";
 import { uploadBytes, ref, getDownloadURL } from "firebase/storage";
+import Button from "../UI/Button";
 const Admin = (props) => {
   const [previewUrl, setPreviewUrl] = useState("");
   const [imageBlob, setImageBlob] = useState("");
@@ -140,7 +140,7 @@ const Admin = (props) => {
           >
             <h1>Drag and drop image</h1>
           </div>
-          <button>Accept</button>
+          <Button>Accept</Button>
         </div>
         {previewUrl && paintingType === "Portrait" && (
           <Portrait

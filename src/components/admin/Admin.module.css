@@ -3,9 +3,9 @@
   flex-direction: column;
   width: auto;
   height: auto;
-  margin: 6vh 15vh;
+  margin: 10vh 15vh;
   border-radius: 35px;
-  background: rgba(204, 55, 55, 0.6);
+  background: rgba(245, 222, 179, 0.9);
   justify-content: center;
   color: black;
 }

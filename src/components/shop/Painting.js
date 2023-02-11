@@ -2,6 +2,7 @@ import classes from "./Painting.module.css";
 import Modal from "../UI/Modal";
 import { useContext } from "react";
 import PaintingsContext from "../../store/paintings-context";
+import Button from "../UI/Button";
 const Painting = (props) => {
   const ctx = useContext(PaintingsContext);
 
@@ -22,10 +23,8 @@ const Painting = (props) => {
             <p>Type: {props.data.type}</p>
             <p>Theme: {props.data.theme}</p>
             <p>Size: 40 x 44"</p>
-            <div className={classes["price-box"]}>
-              <h3>Price: {props.data.price}.00 $</h3>
-              <button onClick={addBasketItemHandler}>Order</button>
-            </div>
+            <p>Price: {props.data.price}.00 $</p>
+            <Button onClick={addBasketItemHandler}>Order</Button>
           </div>
         </div>
       </div>
