@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/Paintings-store-project/static/css/main.c2082d3b.css",
+    "main.js": "/Paintings-store-project/static/js/main.54b4849c.js",
+    "static/media/slider-01.jpg": "/Paintings-store-project/static/media/slider-01.d37414ff69995f26c506.jpg",
+    "static/media/slider-03.jpg": "/Paintings-store-project/static/media/slider-03.f3dc7af7bfa35e9a2f04.jpg",
+    "static/media/slider-mobile-01.webp": "/Paintings-store-project/static/media/slider-mobile-01.316ade706736aab5edb5.webp",
+    "static/media/slider-mobile-03.webp": "/Paintings-store-project/static/media/slider-mobile-03.cc5ddda20d1cfd082314.webp",
+    "static/media/slider-mobile-02.webp": "/Paintings-store-project/static/media/slider-mobile-02.da3c9735bf7a26e2ca39.webp",
+    "static/media/slider-02.jpg": "/Paintings-store-project/static/media/slider-02.a173c8fcbc61ee7e9dcd.jpg",
+    "index.html": "/Paintings-store-project/index.html",
+    "main.c2082d3b.css.map": "/Paintings-store-project/static/css/main.c2082d3b.css.map",
+    "main.54b4849c.js.map": "/Paintings-store-project/static/js/main.54b4849c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c2082d3b.css",
+    "static/js/main.54b4849c.js"
+  ]
+}
