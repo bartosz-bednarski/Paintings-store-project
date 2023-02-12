@@ -57,30 +57,23 @@
   font-size: 1em;
   border-bottom: 1px solid black;
 }
-.price-box {
-  display: flex;
-  height: auto;
-  flex-direction: column;
-  align-items: center;
-  margin: 1vh auto;
-  padding: 1vh;
-}
-.price-box p {
-  font-size: 24px;
-  border: 0px;
-  padding: 0;
-}
 
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 1000px) {
   .painting-box {
     overflow-y: scroll;
-    flex-wrap: wrap;
-    margin: 0;
+    flex-direction: column;
+    max-height: 70vh;
+    align-items: center;
+    column-gap: 3vh;
+  }
+  .painting-box::-webkit-scrollbar {
+    display: none;
   }
   .image-box {
-    width: 100%;
+    width: 88%;
+    height: auto;
   }
   .data-box {
-    width: 100%;
+    width: 80%;
   }
 }

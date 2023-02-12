@@ -1,0 +1,26 @@
+.paintings-list-container {
+  display: flex;
+  flex-direction: column;
+  width: 86%;
+  margin: 5vh 10vh;
+  height: auto;
+}
+.paintings-list-container table {
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  font-weight: 500;
+  color: white;
+}
+.paintings-list-container th {
+  background-color: rgb(204, 55, 55);
+}
+.paintings-list-container td {
+  padding: 2vh;
+  height: auto;
+  border: 1px solid black;
+  max-width: 10vh;
+  word-wrap: break-word;
+}
+.paintings-list-container tr {
+  padding: 1vh;
+}

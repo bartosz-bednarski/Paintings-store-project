@@ -10,6 +10,7 @@
     #ffa51f 75%,
     #cf1512 100%
   );
+  background-clip: border-box;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }

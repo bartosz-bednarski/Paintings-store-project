@@ -42,5 +42,10 @@
   "devDependencies": {
     "gh-pages": "^5.0.0"
   },
+  "browser": {
+    "fs": false,
+    "path": false,
+    "os": false
+  },
   "homepage": "http://bartosz-bednarski.github.io/Paintings-store-project/"
 }

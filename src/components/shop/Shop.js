@@ -1,10 +1,10 @@
 import classes from "./Shop.module.css";
-import ShopLandscapeItems from "./ShopLandscapeItems";
-import ShopPortraitItems from "./ShopPortraitItems";
-import Painting from "./Painting";
+import LandscapesCard from "./landscapes/LandscapesCard";
+import PortraitsCard from "./portraits/PortraitsCard";
+import Painting from "./PaintingModal";
 import { Fragment } from "react";
 import { useState } from "react";
-const Shop = (props) => {
+const Shop = () => {
   const [paintingIsShown, setPaintingIsShown] = useState(false);
 
   const showPainting = () => {
@@ -19,11 +19,11 @@ const Shop = (props) => {
       {paintingIsShown && <Painting />}
 
       <div className={classes["shop-container"]}>
-        <ShopPortraitItems
+        <PortraitsCard
           onShowPainting={showPainting}
           onHidePainting={hidePainting}
         />
-        <ShopLandscapeItems
+        <LandscapesCard
           onShowPainting={showPainting}
           onHidePainting={hidePainting}
         />

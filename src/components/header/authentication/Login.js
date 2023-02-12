@@ -1,9 +1,9 @@
-import classes from "./RegisterForm.module.css";
-import Modal from "../UI/Modal";
+import classes from "./Authentication.module.css";
+import Modal from "../../UI/Modal";
 import { useContext, useState } from "react";
-import RegisterContext from "../../store/register-context";
-import Button from "../UI/Button";
-const LoginForm = (props) => {
+import RegisterContext from "../../../store/register-context";
+import Button from "../../UI/Button";
+const Login = (props) => {
   const [emailValue, setEmailValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
   const [loginIsValid, setLoginIsValid] = useState({
@@ -32,8 +32,9 @@ const LoginForm = (props) => {
       ) {
         setLoginIsValid({ email: emailValue, isValid: true });
         ctx.userIsLoggedInHandler(emailValue, true);
+        localStorage.setItem("isLoggedIn", "true");
+        localStorage.setItem("email", emailValue);
         props.onClose();
-        console.log("correct password and email");
       } else if (usersData[key].email !== emailValue) {
         setWarningMessage({
           type: "WARNING_MESSAGE_EMAIL",
@@ -82,4 +83,4 @@ const LoginForm = (props) => {
   );
 };
 
-export default LoginForm;
+export default Login;

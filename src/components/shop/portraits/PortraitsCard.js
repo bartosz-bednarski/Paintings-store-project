@@ -1,14 +1,10 @@
-import classes from "./ShopPortraitItems.module.css";
-import Portrait from "./Portrait";
-import PaintingOne from "../../assets/painting-01.jpg";
-import PaintingsContext from "../../store/paintings-context";
+import classes from "./PortraitsCard.module.css";
+import PortraitItem from "./PortraitItem";
+import PaintingsContext from "../../../store/paintings-context";
 import { useContext } from "react";
-const ShopPortraitItems = (props) => {
+const PortraitsCard = () => {
   const ctx = useContext(PaintingsContext);
   const data = ctx.paintings;
-  // const consoleLogHandler = () => {
-  //   console.log(data);
-  // };
 
   const portraits = [];
   for (const key in data) {
@@ -31,7 +27,7 @@ const ShopPortraitItems = (props) => {
       <div className={classes["ShopPortraitItems-box"]}>
         {portraits.map((portrait) => {
           return (
-            <Portrait
+            <PortraitItem
               key={portrait.id}
               data={{
                 id: portrait.id,
@@ -46,11 +42,9 @@ const ShopPortraitItems = (props) => {
             />
           );
         })}
-
-        {/* <button onClick={consoleLogHandler}>dummy console log</button> */}
       </div>
     </div>
   );
 };
 
-export default ShopPortraitItems;
+export default PortraitsCard;

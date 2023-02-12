@@ -34,6 +34,10 @@
   border-radius: 10px;
   align-items: center;
 }
+.basket-container h1 {
+  text-align: center;
+  font-size: 24px;
+}
 .total-price {
   display: inline-flex;
   font-size: 1.5em;

@@ -1,8 +1,8 @@
-import classes from "./ShopLandscapeItems.module.css";
+import classes from "./LandscapesCard.module.css";
 import { useContext } from "react";
-import PaintingsContext from "../../store/paintings-context";
-import Landscape from "./Landscape";
-const ShopLandscapeItems = (props) => {
+import PaintingsContext from "../../../store/paintings-context";
+import LandscapeItem from "./LandscapeItem";
+const LandscapesCard = () => {
   const ctx = useContext(PaintingsContext);
   const data = ctx.paintings;
 
@@ -27,7 +27,7 @@ const ShopLandscapeItems = (props) => {
         {landscapes.map((landscape) => {
           if (landscape.type === "Landscape") {
             return (
-              <Landscape
+              <LandscapeItem
                 key={landscape.id}
                 data={{
                   id: landscape.id,
@@ -48,4 +48,4 @@ const ShopLandscapeItems = (props) => {
   );
 };
 
-export default ShopLandscapeItems;
+export default LandscapesCard;

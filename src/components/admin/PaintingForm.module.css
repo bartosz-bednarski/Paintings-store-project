@@ -1,0 +1,48 @@
+.admin-container form {
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  height: auto;
+  padding: 5vh;
+  margin: 5vh 10vh;
+  justify-content: center;
+  align-items: center;
+  column-gap: 20vh;
+}
+.text-data {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  width: 40%;
+}
+.dropzone {
+  margin-top: 5vh;
+  display: flex;
+  height: auto;
+  min-height: 15vh;
+  width: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 5px;
+  justify-content: center;
+  align-items: center;
+}
+.admin-container textarea {
+  height: 10vh;
+  text-align: justify;
+  margin: 1vh 0;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.admin-container input,
+datalist {
+  margin: 1vh 0;
+  width: auto;
+  height: 4vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 5px;
+  color: white;
+}
+.admin-container label {
+  font-size: 20px;
+  font-weight: bold;
+}

@@ -1,9 +1,9 @@
-import classes from "./Painting.module.css";
+import classes from "./PaintingModal.module.css";
 import Modal from "../UI/Modal";
 import { useContext } from "react";
 import PaintingsContext from "../../store/paintings-context";
 import Button from "../UI/Button";
-const Painting = (props) => {
+const PaintingModal = (props) => {
   const ctx = useContext(PaintingsContext);
 
   const addBasketItemHandler = () => {
@@ -32,4 +32,4 @@ const Painting = (props) => {
   );
 };
 
-export default Painting;
+export default PaintingModal;

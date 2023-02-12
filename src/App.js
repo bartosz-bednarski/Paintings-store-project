@@ -3,24 +3,47 @@ import "./App.css";
 import Header from "./components/header/Header";
 import Slider from "./components/slider/Slider";
 import Shop from "./components/shop/Shop";
-import RegisterForm from "./components/header/RegisterForm";
-import LoginForm from "./components/header/LoginForm";
+import Register from "./components/header/authentication/Register";
+import Login from "./components/header/authentication/Login";
 import RegisterContext from "./store/register-context";
 import UserProfile from "./components/header/UserProfile";
 import Admin from "./components/admin/Admin";
 import PaintingsContext from "./store/paintings-context";
 import Basket from "./components/header/Basket";
+import {
+  firebaseUrl,
+  adminFirebase,
+  storage,
+} from "./components/admin/firebase/firebase";
 function App() {
   const [loginFormIsShown, setLoginFormIsShown] = useState(false);
   const [registerFormIsShown, setRegisterFormIsShown] = useState(false);
   const [userProfileIsShown, setUserProfileIsShown] = useState(false);
   const [paintingsData, setPaintingsData] = useState([]);
   const [basketIsShown, setBasketIsShown] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState({
-    email: " ",
-    isLoggedIn: false,
-  });
-  //Display login/register form
+  const loggedInDefault = { email: " ", isLoggedIn: false };
+
+  useEffect(() => {
+    const localStorageUserStatus = localStorage.getItem("isLoggedIn");
+    const localStorageUserEmail = localStorage.getItem("email");
+    if (localStorageUserStatus === "true") {
+      dispatchloggedIn({
+        email: localStorageUserEmail,
+        isLoggedIn: "true",
+      });
+    } else if (localStorageUserStatus === "false") {
+      dispatchloggedIn({ email: " ", isLoggedIn: false });
+    }
+  }, []);
+  const loggedInReducer = (state, action) => {
+    return { email: action.email, isLoggedIn: action.isLoggedIn };
+  };
+  /// not working localStorage
+  const [loggedIn, dispatchloggedIn] = useReducer(
+    loggedInReducer,
+    loggedInDefault
+  );
+
   const showLoginForm = () => {
     setLoginFormIsShown(true);
   };
@@ -49,19 +72,14 @@ function App() {
     setBasketIsShown(false);
   };
 
-  //Not working
-
-  // const consoleLogHandler = () => {
-  //   console.log(isLoggedIn);
-  //   console.log(basketItem);
-  // };
-
   const registeredUsersReducer = (state, action) => {
     return { response: action.response };
   };
-
+  // if (localStorage.getItem("isLoggedIn" === "true")) {
+  //   setIsLoggedIn({ email: emailVal, isLoggedIn: true });
+  // }
   const isLoggedInHandler = (emailVal, isLoggedInVal) => {
-    setIsLoggedIn({ email: emailVal, isLoggedIn: isLoggedInVal });
+    dispatchloggedIn({ email: emailVal, isLoggedIn: isLoggedInVal });
   };
   const [registeredUsers, dispatchRegisteredUsers] = useReducer(
     registeredUsersReducer,
@@ -89,10 +107,8 @@ function App() {
       }
 
       return {
-        // action: action,
         paintings: updatedPaintings,
         totalAmount: updatedTotalAmount,
-        // existingPainting: existingPainting,
       };
     } else if (action.type === "REMOVE") {
       let updatedPaintings;
@@ -125,17 +141,9 @@ function App() {
   });
 
   const fetchUsersHandler = useCallback(async () => {
-    const response = await fetch(
-      "https://paintings4sale-28dda-default-rtdb.europe-west1.firebasedatabase.app/users.json"
-    );
+    const response = await fetch(`${firebaseUrl}/users.json`);
     const data = await response.json();
-    console.log(data);
-    // for (const key in data) {
-    //   users.push({
-    //     email: data[key].email,
-    //     password: data[key].password,
-    //   });
-    // }
+
     dispatchRegisteredUsers({ response: data });
   }, []);
 
@@ -144,31 +152,20 @@ function App() {
   }, [fetchUsersHandler]);
 
   async function addRegisteredUserHandler(registrationData) {
-    const response = await fetch(
-      "https://paintings4sale-28dda-default-rtdb.europe-west1.firebasedatabase.app/users.json",
-      {
-        method: "POST",
-        body: JSON.stringify(registrationData),
-        headers: { "Content-Type": "application/json" },
-      }
-    );
+    const response = await fetch(`${firebaseUrl}/users.json`, {
+      method: "POST",
+      body: JSON.stringify(registrationData),
+      headers: { "Content-Type": "application/json" },
+    });
     const data = await response.json();
     console.log(data);
     fetchUsersHandler();
   }
 
   const getStoreDataHandler = useCallback(async () => {
-    const response = await fetch(
-      "https://paintings4sale-28dda-default-rtdb.europe-west1.firebasedatabase.app/store.json"
-    );
+    const response = await fetch(`${firebaseUrl}/store.json`);
     const data = await response.json();
-    console.log(data);
-    // for (const key in data) {
-    //   users.push({
-    //     email: data[key].email,
-    //     password: data[key].password,
-    //   });
-    // }
+
     const loadedData = [];
 
     for (const key in data) {
@@ -184,12 +181,10 @@ function App() {
     }
 
     setPaintingsData(loadedData);
-    //not working !!!
   }, []);
   useEffect(() => {
     getStoreDataHandler();
   }, []);
-  //Display login/register form
   return (
     <PaintingsContext.Provider
       value={{
@@ -205,16 +200,16 @@ function App() {
           registrationData: addRegisteredUserHandler,
           registeredUsersData: registeredUsers,
           userIsLoggedInHandler: isLoggedInHandler,
-          userIsLoggedIn: isLoggedIn,
+          userIsLoggedIn: loggedIn,
         }}
       >
         {loginFormIsShown && !registerFormIsShown && (
-          <LoginForm
+          <Login
             onClose={hideLoginForm}
             onShowRegisterForm={showRegisterForm}
           />
         )}
-        {registerFormIsShown && <RegisterForm onClose={hideRegisterForm} />}
+        {registerFormIsShown && <Register onClose={hideRegisterForm} />}
         {userProfileIsShown && <UserProfile onClose={hideUserProfile} />}
         {basketIsShown && <Basket onClose={hideBasket} />}
         <Header
@@ -223,9 +218,8 @@ function App() {
           onShowBasket={showBasket}
         ></Header>
       </RegisterContext.Provider>
-      {isLoggedIn.email === "admin1234@gmail.com" && <Admin />}
+      {loggedIn.email === adminFirebase && <Admin />}
       <Slider />
-      {/* <button onClick={consoleLogHandler}>Check console log</button> */}
       <Shop />
     </PaintingsContext.Provider>
   );

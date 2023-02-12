@@ -1,8 +1,9 @@
-import classes from "./Portrait.module.css";
-import Card from "../UI/Card";
-import { Fragment, useState } from "react";
-import Painting from "./Painting";
-const Portrait = (props) => {
+import classes from "./LandscapeItem.module.css";
+import Card from "../../UI/Card";
+import { useState } from "react";
+import { Fragment } from "react";
+import PaintingModal from "../PaintingModal";
+const LandscapeItem = (props) => {
   const [paintingIsShown, setPaintingIsShown] = useState(false);
 
   const showPainting = () => {
@@ -11,14 +12,15 @@ const Portrait = (props) => {
   const hidePainting = () => {
     setPaintingIsShown(false);
   };
+
   return (
     <Fragment>
       {paintingIsShown === true && (
-        <Painting onClose={hidePainting} data={props.data} />
+        <PaintingModal onClose={hidePainting} data={props.data} />
       )}
       <Card>
         <div
-          className={classes.portraitItem}
+          className={classes["landscape-box"]}
           onClick={showPainting}
           data={props.data}
         >
@@ -31,4 +33,4 @@ const Portrait = (props) => {
   );
 };
 
-export default Portrait;
+export default LandscapeItem;

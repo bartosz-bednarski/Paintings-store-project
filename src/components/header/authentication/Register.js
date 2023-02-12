@@ -1,8 +1,8 @@
-import classes from "./RegisterForm.module.css";
-import Modal from "../UI/Modal";
+import classes from "./Authentication.module.css";
+import Modal from "../../UI/Modal";
 import { useContext, useEffect, useReducer, useState } from "react";
-import RegisterContext from "../../store/register-context";
-import Button from "../UI/Button";
+import RegisterContext from "../../../store/register-context";
+import Button from "../../UI/Button";
 const emailReducer = (state, action) => {
   if (action.type === "USER_INPUT") {
     return {
@@ -27,7 +27,7 @@ const passwordConfirmReducer = (state, action) => {
   }
 };
 
-const RegisterForm = (props) => {
+const Register = (props) => {
   const [emailState, dispatchEmail] = useReducer(emailReducer, {
     value: "",
     isValid: false,
@@ -77,7 +77,6 @@ const RegisterForm = (props) => {
   const [emailIsUnique, setEmailIsUnique] = useState(false);
   const ctx = useContext(RegisterContext);
   const usersData = ctx.registeredUsersData.response;
-  //after passing same e-mail, then backspace and writing again the same email it accepts the values. This has to be fixed !!!
   useEffect(() => {
     for (const key in usersData) {
       if (usersData[key].email === emailValue) {
@@ -169,4 +168,4 @@ const RegisterForm = (props) => {
     </Modal>
   );
 };
-export default RegisterForm;
+export default Register;

@@ -5,18 +5,20 @@ import Modal from "../UI/Modal";
 import classes from "./UserProfile.module.css";
 const UserProfile = (props) => {
   const ctx = useContext(RegisterContext);
+
   const userIsLoggedInHandler = () => {
     ctx.userIsLoggedInHandler("", false);
+    localStorage.removeItem("email");
+    localStorage.removeItem("isLoggedIn");
+    props.onClose();
   };
-  if (ctx.userIsLoggedIn.isLoggedIn === true) {
-    return (
-      <Modal onClose={props.onClose}>
-        <div className={classes.userProfile}>
-          <Button onClick={userIsLoggedInHandler}>Logout</Button>
-        </div>
-      </Modal>
-    );
-  }
+  return (
+    <Modal onClose={props.onClose}>
+      <div className={classes.userProfile}>
+        <Button onClick={userIsLoggedInHandler}>Logout</Button>
+      </div>
+    </Modal>
+  );
 };
 
 export default UserProfile;
