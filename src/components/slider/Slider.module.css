@@ -19,13 +19,15 @@
   width: 100%;
   height: 100%;
   border-radius: 35px;
-  animation: slide-down 4s alternate;
 }
 
 .slider-box img {
   width: 100%;
   height: 100%;
   border-radius: 35px;
+}
+.slider-img {
+  animation: slide-down 3s alternate;
 }
 .slider-box p {
   position: absolute;
@@ -65,16 +67,16 @@
 @keyframes slide-down {
   0% {
     opacity: 0;
-    transform: translateX(5rem);
+    transform: translateX(2vw);
   }
   60% {
     opacity: 1;
-    transform: translateX(0rem);
+    transform: translateX(0vw);
   }
 
   100% {
     opacity: 1;
-    transform: translateX(0rem);
+    transform: translateX(0vw);
   }
 }
 

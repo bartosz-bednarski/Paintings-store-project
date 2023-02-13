@@ -15,7 +15,7 @@ const PaintingModal = (props) => {
       <div className={classes["painting-container"]}>
         <div className={classes["painting-box"]}>
           <div className={classes["image-box"]}>
-            <img src={props.data.image} />
+            <img src={props.data.image} alt={props.data.name} />
           </div>
           <div className={classes["data-box"]}>
             <h1>{props.data.name}</h1>

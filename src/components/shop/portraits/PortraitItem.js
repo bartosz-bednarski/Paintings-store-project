@@ -22,7 +22,7 @@ const PortraitItem = (props) => {
           onClick={showPainting}
           data={props.data}
         >
-          <img src={props.data.image} />
+          <img src={props.data.image} alt={props.data.name} />
           <h3>{props.data.name}</h3>
           <span>{props.data.price}.00 $</span>
         </div>

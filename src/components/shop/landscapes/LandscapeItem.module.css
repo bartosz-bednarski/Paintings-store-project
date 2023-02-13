@@ -1,26 +1,36 @@
 .landscape-box {
   display: flex;
   flex-direction: column;
-  width: 35vh;
-  height: fit-content;
-  padding: 4vh 4vh;
+  width: 30vw;
+  height: 40vh;
+  padding: 4vh 2vw;
   text-align: center;
   cursor: pointer;
   color: black;
 }
 
 .landscape-box img {
-  width: 35vh;
-  height: 25vh;
+  width: 30vw;
+  height: 30vh;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
 }
 
 .landscape-box span {
   width: auto;
   height: auto;
-  margin: 0vh 10vh;
+  margin: 0vh 6vw;
   padding: 0.7vh 0;
   background-color: wheat;
   border-radius: 20px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+}
+@media only screen and (max-width: 1000px) {
+  .landscape-box {
+    height: 60vh;
+    width: 60vw;
+  }
+  .landscape-box img {
+    height: 40vh;
+    width: 60vw;
+  }
 }

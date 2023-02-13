@@ -1,7 +1,7 @@
 import classes from "./Slider.module.css";
-import SliderOne from "../../assets/slider-01.jpg";
-import SliderTwo from "../../assets/slider-02.jpg";
-import SliderThree from "../../assets/slider-03.jpg";
+import SliderOne from "../../assets/slider-01.webp";
+import SliderTwo from "../../assets/slider-02.webp";
+import SliderThree from "../../assets/slider-03.webp";
 import SliderMobileOne from "../../assets/slider-mobile-01.webp";
 import SliderMobileTwo from "../../assets/slider-mobile-02.webp";
 import SliderMobileThree from "../../assets/slider-mobile-03.webp";
@@ -23,7 +23,11 @@ const Slider = () => {
             media="(max-width: 900px)"
             srcSet={sliderItem.paintingMobile}
           />
-          <img src={sliderItem.painting} />
+          <img
+            src={sliderItem.painting}
+            alt={sliderItem.description}
+            className={classes[`${sliderItem.imageClassName}`]}
+          />
         </picture>
 
         <p>{sliderItem.description}</p>
@@ -43,7 +47,7 @@ const Slider = () => {
         painting: SliderTwo,
         paintingMobile: SliderMobileTwo,
         itemNumber: 1,
-        description: "Decore your home with beautifull landscapes.",
+        description: "Nature paintings -15% this week.",
       },
       three: {
         painting: SliderThree,
@@ -52,6 +56,7 @@ const Slider = () => {
         description: "Find yourself in modern art paintings.",
       },
     };
+
     const interval = setInterval(() => {
       if (sliderItem.itemNumber === 0) {
         dispatchSliderItem({
@@ -59,6 +64,7 @@ const Slider = () => {
           paintingMobile: dummyObject.two.paintingMobile,
           itemNumber: dummyObject.two.itemNumber,
           description: dummyObject.two.description,
+          imageClassName: "slider-img",
         });
       } else if (sliderItem.itemNumber === 1) {
         dispatchSliderItem({
@@ -66,6 +72,7 @@ const Slider = () => {
           paintingMobile: dummyObject.three.paintingMobile,
           itemNumber: dummyObject.three.itemNumber,
           description: dummyObject.three.description,
+          imageClassName: "slider-img",
         });
       } else if (sliderItem.itemNumber === 2) {
         dispatchSliderItem({
@@ -73,12 +80,15 @@ const Slider = () => {
           paintingMobile: dummyObject.one.paintingMobile,
           itemNumber: dummyObject.one.itemNumber,
           description: dummyObject.one.description,
+          imageClassName: "slider-img",
         });
       }
       // console.log(sliderItem);
       return clearInterval(interval);
     }, 8000);
-  }, [sliderItem]);
+
+    setTimeout(interval, 8000);
+  }, [sliderItem.itemNumber]);
 
   return (
     <div className={classes["slider-container"]}>

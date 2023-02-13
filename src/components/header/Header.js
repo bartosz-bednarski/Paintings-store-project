@@ -14,37 +14,37 @@ const Header = (props) => {
     <div className={classes["header-container"]}>
       <Logo />
 
-      <ul>
+      <div className={classes["interactive-box"]}>
         {!isLoggedIn.isLoggedIn && (
-          <li>
+          <div className={classes["interactive-item"]}>
             <button
               onClick={props.onShowloginForm}
-              className={classes["profile-button"]}
+              className={classes["interactive-button"]}
             >
-              <img src={UserIcon} />
+              <img src={UserIcon} className={classes["user-icon"]} />
             </button>
-          </li>
+          </div>
         )}
         {isLoggedIn.isLoggedIn && (
-          <li>
+          <div className={classes["interactive-item"]}>
             <button
-              className={classes["profile-button"]}
+              className={classes["interactive-button"]}
               onClick={props.onShowUserProfile}
             >
               {isLoggedIn.email}
             </button>
-          </li>
+          </div>
         )}
-        <li>
+        <div className={classes["interactive-item"]}>
           <button
-            className={classes["basket-button"]}
+            className={classes["interactive-button"]}
             onClick={props.onShowBasket}
           >
-            <img src={Icon} className={classes.icon} />
+            <img src={Icon} className={classes["basket-icon"]} />
             <span className={classes.badge}>{badge}</span>
           </button>
-        </li>
-      </ul>
+        </div>
+      </div>
     </div>
   );
 };
