@@ -1,70 +1,59 @@
-# Getting Started with Create React App
+<br />
+<div align="center">
+  <a href="https://bartosz-bednarski.github.io/Paintings-store-project/">
+    <img src="/readme_images/01.PNG" alt="Logo" width="100%" height="100%">
+  </a>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+  <p align="center">
+  <br />
+    <br/>
+    <br/>
+    <a href="https://bartosz-bednarski.github.io/Paintings-store-project/"><strong>Explore the website</strong></a>
+    <br />
+    
+  </p>
+</div>
 
-In the project directory, you can run:
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+<!-- ABOUT THE PROJEC -->
+## About The Project
+<img src="/readme_images/02.PNG" alt="Logo" width="100%" height="100%">
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Paintings-store-project is a website build with React, using Google Firebase and JavaScript to update and download data stored at server. 
+* Website has simple validation logic to create an account where username and password are stored in Firebase realtime database.
+* When page starts it connects with database and download paintings data which are filtered and displayed in individual sections of the website.
+* Logging with login: 'admin1234@gmail.com' and password: '123456' initializes  displaying admin component which gives possibility to update paintings to database and view their present list. 
+* After filling all brackets in form and displaying image on drag and drop element we can send image data to the database.
+* Accept button initializes function which sends blob url to firebase storage and downloads it's url by getStorage() build in function. After that data is being send to the Firebase paintings database and then gets downloaded automaticly to update the present list of database elements.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Used Technologies
+* React
+* JavaScript
+* CSS
+* HTML
+* Google Firebase API
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## Desktop view
+<img src="/readme_images/03.PNG" alt="Logo" width="100%" height="100%">
+<img src="/readme_images/04.PNG" alt="Logo" width="100%" height="100%">
+<img src="/readme_images/05.PNG" alt="Logo" width="100%" height="100%">
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Mobile view
+<img src="/readme_images/01_mobile.jpg" alt="Logo" width="30%" height="auto"> <img src="/readme_images/02_mobile.jpg" alt="Logo" width="30%" height="auto"> <img src="/readme_images/03_mobile.jpg" alt="Logo" width="30%" height="auto">      
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+<!-- CONTACT -->
+## Contact
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Bartosz Bednarski 
+* e-mail: bartosz.bednarski97@gmail.com
+* linkedIn: https://www.linkedin.com/in/bartosz-bednarski-050196234/
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Project Link: [https://bartosz-bednarski.github.io/Paintings-store-project/](https://bartosz-bednarski.github.io/Paintings-store-project/)
