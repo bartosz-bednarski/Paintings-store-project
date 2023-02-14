@@ -23,8 +23,8 @@ const PortraitItem = (props) => {
           data={props.data}
         >
           <img src={props.data.image} alt={props.data.name} />
-          <h3>{props.data.name}</h3>
-          <span>{props.data.price}.00 $</span>
+          <span className={classes.name}>{props.data.name}</span>
+          <span className={classes.price}>{props.data.price}.00 $</span>
         </div>
       </Card>
     </Fragment>

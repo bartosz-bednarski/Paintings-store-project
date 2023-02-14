@@ -21,7 +21,11 @@ const Header = (props) => {
               onClick={props.onShowloginForm}
               className={classes["interactive-button"]}
             >
-              <img src={UserIcon} className={classes["user-icon"]} />
+              <img
+                src={UserIcon}
+                alt="user icon"
+                className={classes["user-icon"]}
+              />
             </button>
           </div>
         )}
@@ -40,7 +44,11 @@ const Header = (props) => {
             className={classes["interactive-button"]}
             onClick={props.onShowBasket}
           >
-            <img src={Icon} className={classes["basket-icon"]} />
+            <img
+              src={Icon}
+              alt="basket icon"
+              className={classes["basket-icon"]}
+            />
             <span className={classes.badge}>{badge}</span>
           </button>
         </div>

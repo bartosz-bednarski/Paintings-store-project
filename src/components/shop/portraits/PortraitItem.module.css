@@ -14,7 +14,12 @@
   height: 40vh;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
 }
-.portraitItem span {
+.name {
+  font-size: 2vh;
+  margin: 2vh 1vw;
+  font-weight: 500;
+}
+.price {
   width: auto;
   height: auto;
   margin: 0vh 8vh;
