@@ -34,6 +34,7 @@ const Header = (props) => {
             <button
               className={classes["interactive-button"]}
               onClick={props.onShowUserProfile}
+              aria-label='Show user profile'
             >
               {isLoggedIn.email}
             </button>
@@ -43,6 +44,7 @@ const Header = (props) => {
           <button
             className={classes["interactive-button"]}
             onClick={props.onShowBasket}
+            aria-label='Show basket'
           >
             <img
               src={Icon}

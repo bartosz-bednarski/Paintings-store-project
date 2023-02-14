@@ -1,11 +1,11 @@
 .userProfile {
-  position: absolute;
-  top: 10%;
-  left: 0vw;
+  position: relative;
+  margin-left: 95vw;
   display: flex;
   flex-direction: column;
-  padding: 5vh;
-  width: 30vw;
+  justify-content: center;
+  padding: 5vh 5vw;
+  height: 30vh;
   background: rgba(245, 222, 179, 0.9);
   border-radius: 10px;
 }
